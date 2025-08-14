@@ -29,7 +29,7 @@ class CandidatesEdit extends Component
     public array $answersEN = [];
     public int $votes;
     public bool $resigned;
-    public ?string $candidacyReceived;
+    public $candidacyReceived;
     public bool $approved;
     public ?string $picture;
     public string $pictureUrl = "";
