@@ -1,0 +1,17 @@
+<div class="flex h-16 shrink-0 items-center gap-x-4 border-b border-zinc-900 bg-zinc-800 pr-4 shadow-sm shadow-black/30 sm:gap-x-6 sm:pr-6 lg:pr-8 z-10 print:hidden">
+    <a wire:navigate href="/" class="flex h-full items-center border-b-0 w-[18rem] px-6">
+        <img class="h-8 w-auto hidden sm:inline" src="{{ asset('logo.svg') }}" alt="Wahlen an der TU Ilmenau">
+    </a>
+    
+    <div class="flex items-center gap-x-6 ml-auto">
+        <livewire:switch.language-switch />
+        <button
+            class="-m-2.5 p-2.5 text-zinc-300 hover:text-zinc-100 cursor-pointer"
+            title="{{ __('common.about') }} GISELA &hellip;"
+            @click="dialogInfo = true"
+        >
+            <span aria-hidden="true">@svg('mdi-information', 'size-6')</span>
+            <span class="sr-only">{{ __('common.about') }} GISELA &hellip;</span> 
+        </button>
+    </div>
+</div>
