@@ -56,11 +56,11 @@
   }
 
   main & table th {
-    @apply border border-zinc-400 dark:border-zinc-800 bg-zinc-300 dark:bg-zinc-600 px-3 py-1.5 text-left;
+    @apply border border-zinc-400 dark:border-zinc-800 bg-zinc-300 dark:bg-zinc-600 px-3! py-1.5 text-left;
   }
 
   main & table td {
-    @apply border border-zinc-400 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-700 px-3 py-1.5;
+    @apply border border-zinc-400 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-700 px-3! py-1.5;
   }
 
   main & table tr:nth-child(2n + 1) td {
@@ -127,7 +127,7 @@
   @apply grid-cols-[auto_1fr_6.5rem]! lg:grid-cols-[auto_2fr_3fr_9rem_7rem]!;
 
   & > div:first-of-type {
-    @apply row-span-4 lg:row-span-1;
+    @apply row-span-4! lg:row-span-1;
   }
 
   & > div:nth-of-type(2) {
