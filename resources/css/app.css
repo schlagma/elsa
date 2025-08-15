@@ -156,10 +156,10 @@
 }
 
 @utility candidate-box-resigned {
-  @apply grid-cols-[auto_1fr_6.5rem] lg:grid-cols-[auto_2fr_3fr_9rem_7rem];
+  @apply grid-cols-[auto_1fr_6.5rem]! lg:grid-cols-[auto_2fr_3fr_9rem_7rem]!;
 
   & > div:first-of-type {
-    @apply row-span-4 lg:row-span-1;
+    @apply row-span-4! lg:row-span-1;
   }
 
   & > div:nth-of-type(2) {
