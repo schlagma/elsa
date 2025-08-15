@@ -1,4 +1,4 @@
-<div class="flex flex-col p-6 sm:p-8 !pb-0 overflow-y-auto h-full">
+<div class="flex flex-col p-6 sm:p-8 pb-0! overflow-y-auto h-full">
     <div class="xl:flex xl:items-center">
         <div class="sm:flex-auto">
             <h1 class="text-2xl font-bold leading-6 text-zinc-800 dark:text-white">{{ __('admin.coursesEditTitle') }}</h1>

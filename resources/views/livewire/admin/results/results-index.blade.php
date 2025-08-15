@@ -52,12 +52,12 @@
         <div class="-mx-6 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                 @if (count($results) > 0)
-                <div class="overflow-hidden shadow-sm ring-1 ring-black/5 sm:rounded-lg">
+                <div class="overflow-hidden shadow-xs ring-1 ring-black/5 sm:rounded-lg">
                     <table>
                         <thead>
                             <tr>
-                                <th scope="col" class="min-w-[10rem]">{{ __('admin.election') }}</th>
-                                <th scope="col" class="min-w-[10rem]">{{ __('admin.committee') }}</th>
+                                <th scope="col" class="min-w-40">{{ __('admin.election') }}</th>
+                                <th scope="col" class="min-w-40">{{ __('admin.committee') }}</th>
                                 <th scope="col"><span class="sr-only">{{ __('admin.options') }}</span></th>
                             </tr>
                         </thead>
@@ -81,7 +81,7 @@
                                         <div x-show="dropdown" @click.outside="dropdown = false" class="absolute right-0 bottom-8 z-10 mt-1 origin-top-right divide-y divide-zinc-200 dark:divide-zinc-700 rounded-md bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-black/5 dark:ring-white/5">
                                         @endif
                                             <div class="py-1">
-                                                <a wire:navigate href="{{ route('admin-results-edit', ['id' => $result->id]) }}" class="text-zinc-800 dark:text-white group flex items-center px-4 py-2 border-0 hover:bg-zinc-200 dark:hover:bg-zinc-700 !font-normal">
+                                                <a wire:navigate href="{{ route('admin-results-edit', ['id' => $result->id]) }}" class="text-zinc-800 dark:text-white group flex items-center px-4 py-2 border-0 hover:bg-zinc-200 dark:hover:bg-zinc-700 font-normal!">
                                                     <span aria-hidden="true">@svg('mdi-file-edit', 'mr-3 size-5 text-zinc-500 dark:text-zinc-300')</span>
                                                     {{ __('common.edit') }}
                                                 </a>

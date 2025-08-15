@@ -1,4 +1,4 @@
-<div class="flex flex-col p-6 sm:p-8 !pb-0 overflow-y-auto h-full">
+<div class="flex flex-col p-6 sm:p-8 pb-0! overflow-y-auto h-full">
     <div class="xl:flex xl:items-center">
         <div class="sm:flex-auto">
             <h1 class="text-2xl font-bold leading-6 text-zinc-800 dark:text-white">{{ __('admin.committeesAddTitle') }}</h1>
@@ -18,11 +18,11 @@
         <div class="mt-6 grid sm:grid-cols-2 gap-6">
             <div>
                 <label>{{ __('admin.infotextDE') }}</label>
-                <textarea wire:model="infotextDE" class="w-full h-[15rem]"></textarea>
+                <textarea wire:model="infotextDE" class="w-full h-60"></textarea>
             </div>
             <div>
                 <label>{{ __('admin.infotextEN') }}</label>
-                <textarea wire:model="infotextEN" class="w-full h-[15rem]"></textarea>
+                <textarea wire:model="infotextEN" class="w-full h-60"></textarea>
             </div>
         </div>
         <div class="mt-6 grid sm:grid-cols-2 xl:grid-cols-3 gap-6">

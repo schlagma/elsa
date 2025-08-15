@@ -1,4 +1,4 @@
-<div class="flex h-16 shrink-0 items-center gap-x-4 border-b border-zinc-900 bg-zinc-800 px-4 shadow-sm shadow-black/30 sm:gap-x-6 sm:px-6 lg:px-8 z-10 print:hidden">
+<div class="flex h-16 shrink-0 items-center gap-x-4 border-b border-zinc-900 bg-zinc-800 px-4 shadow-xs shadow-black/30 sm:gap-x-6 sm:px-6 lg:px-8 z-10 print:hidden">
     <button type="button" class="-m-2.5 p-2.5 text-zinc-700 lg:hidden cursor-pointer" @click="mobileMenu = true">
         <span class="sr-only">Open sidebar</span>
         @svg('mdi-menu', 'size-6 text-zinc-300 hover:text-zinc-100')
@@ -55,13 +55,13 @@
                 @endauth
                 <div class="py-1" role="none">
                     @guest
-                    <a href="/auth/login" class="group flex w-full items-center px-4 py-2 text-zinc-800 dark:text-white cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700 focus:bg-zinc-200 dark:focus:bg-zinc-700 !border-b-0" role="menuitem" tabindex="-1" id="menu-item-3">
+                    <a href="/auth/login" class="group flex w-full items-center px-4 py-2 text-zinc-800 dark:text-white cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700 focus:bg-zinc-200 dark:focus:bg-zinc-700 border-b-0!" role="menuitem" tabindex="-1" id="menu-item-3">
                         <span aria-hidden="true">@svg('mdi-login', 'mr-3 size-5 text-zinc-500')</span>
                         {{ __('common.login') }}
                     </a>
                     @endguest
                     @auth
-                    <a href="/auth/logout" class="group flex w-full items-center px-4 py-2 text-zinc-800 dark:text-white cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700 focus:bg-zinc-200 dark:focus:bg-zinc-700 !border-b-0" role="menuitem" tabindex="-1" id="menu-item-3">
+                    <a href="/auth/logout" class="group flex w-full items-center px-4 py-2 text-zinc-800 dark:text-white cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700 focus:bg-zinc-200 dark:focus:bg-zinc-700 border-b-0!" role="menuitem" tabindex="-1" id="menu-item-3">
                         <span aria-hidden="true">@svg('mdi-logout', 'mr-3 size-5 text-zinc-500')</span>
                         {{ __('common.logout') }}
                     </a>

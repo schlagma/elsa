@@ -14,7 +14,7 @@
         @vite('resources/js/app.js')
     </head>
     <body x-data="{ mobileMenu: false, dialogInfo: false, profileDropdown: false, cart: $persist([]) }">
-        <div class="body grid !grid-cols-1 lg:grid-rows-[4rem_1fr_3rem]">
+        <div class="body grid grid-cols-1! lg:grid-rows-[4rem_1fr_3rem]">
             <div class="grid grid-rows-[4rem_1fr] w-full h-screen">
                 <livewire:head.head-legal />
                 <main class="public">

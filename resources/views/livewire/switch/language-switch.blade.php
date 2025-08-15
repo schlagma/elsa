@@ -11,7 +11,7 @@
                 </span>
             </button>
         </div>
-        <div class="absolute right-0 z-10 mt-4 w-[11rem] origin-top-right divide-y divide-zinc-200 dark:divide-zinc-700 rounded-md bg-white dark:bg-zinc-800 ring-1 shadow-lg ring-black/5 dark:ring-zinc-700 focus:outline-hidden"
+        <div class="absolute right-0 z-10 mt-4 w-44 origin-top-right divide-y divide-zinc-200 dark:divide-zinc-700 rounded-md bg-white dark:bg-zinc-800 ring-1 shadow-lg ring-black/5 dark:ring-zinc-700 focus:outline-hidden"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="menu-button"
@@ -30,7 +30,7 @@
                 <a
                     wire:navigate
                     href="{{ route('language', ['language' => $key]) }}"
-                    class="group flex w-full items-center px-4 py-2 text-zinc-800 dark:text-white cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700 focus:bg-zinc-200 dark:focus:bg-zinc-700 !border-b-0 {{ app()->getLocale() === $key ? 'bg-zinc-300 hover:bg-zinc-300 dark:bg-zinc-600 dark:hover:bg-zinc-700' : '' }}"
+                    class="group flex w-full items-center px-4 py-2 text-zinc-800 dark:text-white cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700 focus:bg-zinc-200 dark:focus:bg-zinc-700 border-b-0! {{ app()->getLocale() === $key ? 'bg-zinc-300 hover:bg-zinc-300 dark:bg-zinc-600 dark:hover:bg-zinc-700' : '' }}"
                     role="menuitem"
                 >
                     <span aria-hidden="true" class="mr-2">

@@ -71,11 +71,11 @@
             @foreach ($questions[0] as $index => $question)
             <div>
                 <div class="card-header">{{ $questions[0][$index] }}</div>
-                <textarea wire:model="answersDE.{{ $index }}" class="h-[6rem] !rounded-t-none"></textarea>
+                <textarea wire:model="answersDE.{{ $index }}" class="h-24 rounded-t-none!"></textarea>
             </div>
             <div>
                 <div class="card-header">{{ $questions[1][$index] }}</div>
-                <textarea wire:model="answersEN.{{ $index }}" class="h-[6rem] !rounded-t-none"></textarea>
+                <textarea wire:model="answersEN.{{ $index }}" class="h-24 rounded-t-none!"></textarea>
             </div>
             @endforeach
         </div>
@@ -110,7 +110,7 @@
     </div>
     <div x-data="cropper">
         @if ($pictureUrl)
-        <img src="{{ $pictureUrl }}" class="max-h-[15rem] rounded-md shadow">
+        <img src="{{ $pictureUrl }}" class="max-h-60 rounded-md shadow-sm">
         <div class="flex gap-x-4 mt-6">
             <button type="button" class="btn-primary ml-auto" @click="removeImage">
                 <span aria-hidden="true">@svg('mdi-delete', '-ml-0.5 size-5')</span>
@@ -123,12 +123,12 @@
                 id="imageInput"
                 type="file"
                 accept="image/*"
-                class="w-full h-[15rem] px-3 py-2 border border-zinc-200 rounded-md cursor-pointer"
+                class="w-full h-60 px-3 py-2 border border-zinc-200 rounded-md cursor-pointer"
                 :value="imageCropped"
                 x-show="!imageIsSelected"
                 x-on:change="loadImage"
             >
-            <img id="image" class="max-w-full h-[15rem]" x-show="imageIsSelected">
+            <img id="image" class="max-w-full h-60" x-show="imageIsSelected">
         </div>
         <div class="flex gap-x-4 mt-6">
             <button type="button" class="btn-neutral ml-auto" @click="cancelImage">

@@ -12,7 +12,7 @@
             @else
                 <a wire:navigate class="text-black dark:text-white" href="{{ route('public-candidates', ['election' => $electionID, 'committee' => $committeeID]) }}">@if(app()->getLocale() == "en"){{ $committeeName[1] }}@else{{ $committeeName[0] }}@endif</a></p>
             @endif
-        <h1 class="!mb-6 dark:text-white">{{ $candidate->firstname }} {{ $candidate->lastname }}</h1>
+        <h1 class="mb-6! dark:text-white">{{ $candidate->firstname }} {{ $candidate->lastname }}</h1>
     </div>
 
     @if($candidate->picture != '')
@@ -91,7 +91,7 @@
             @else
                 <div class="row-span-2 text-center w-full mt-8 xl:mt-0">
             @endif
-                <img class="border border-zinc-300 shadow-sm dark:shadow-md dark:border-zinc-600 rounded-md max-h-72 xl:max-h-none mb-8 xl:mb-0 mx-auto" src="{{ $pictureUrl }}" alt="{{ __('messages.pictureOf') . ' ' . $candidate->firstname . ' ' . $candidate->lastname }}" />
+                <img class="border border-zinc-300 shadow-xs dark:shadow-md dark:border-zinc-600 rounded-md max-h-72 xl:max-h-none mb-8 xl:mb-0 mx-auto" src="{{ $pictureUrl }}" alt="{{ __('messages.pictureOf') . ' ' . $candidate->firstname . ' ' . $candidate->lastname }}" />
             </div>
         @endif
     </div>
@@ -101,14 +101,14 @@
         <div class="flex flex-col mt-8 gap-4">
     @endif
         @if(!$textExists)
-            <div class="grid grid-cols-[auto_1fr] shadow-sm dark:shadow-md col-span-2 dark:text-white">
+            <div class="grid grid-cols-[auto_1fr] shadow-xs dark:shadow-md col-span-2 dark:text-white">
                 <div class="bg-sky-700 p-2 h-full border border-sky-800 rounded-l-md text-white">
                     <span aria-hidden="true">@svg('mdi-information-outline', 'size-6')</span>
                 </div>
                 <div class="pl-4 py-2 pr-4 bg-zinc-100 dark:bg-zinc-700 border border-zinc-300 dark:border-zinc-600 border-l-0 rounded-r-md">{{ __('messages.candidate_notice_other_language') }}</div>
             </div>
         @endif
-        <div class="grid grid-cols-[auto_1fr] shadow-sm dark:shadow-md col-span-2 dark:text-white">
+        <div class="grid grid-cols-[auto_1fr] shadow-xs dark:shadow-md col-span-2 dark:text-white">
             <div class="bg-red-600 p-2 h-full border border-red-700 rounded-l-md text-white">
                 <span aria-hidden="true">@svg('mdi-alert-circle-outline', 'size-6')</span>
             </div>

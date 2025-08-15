@@ -1,4 +1,4 @@
-<div class="flex h-16 shrink-0 items-center justify-items-end gap-x-4 border-b border-zinc-900 bg-zinc-800 px-4 shadow-sm shadow-black/20 sm:px-6 lg:px-8">
+<div class="flex h-16 shrink-0 items-center justify-items-end gap-x-4 border-b border-zinc-900 bg-zinc-800 px-4 shadow-xs shadow-black/20 sm:px-6 lg:px-8">
     <button type="button" class="-m-2.5 p-2.5 text-zinc-700 lg:hidden" @click="mobileMenu = true">
         <span class="sr-only">Open sidebar</span>
         <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">

@@ -10,9 +10,9 @@
                 {{ __('messages.results') }}
             </p>
             @if(app()->getLocale() == "en")
-                <h1 class="!mb-6 dark:text-white">{{ json_decode($committee->name)[1] }}</h1>
+                <h1 class="mb-6! dark:text-white">{{ json_decode($committee->name)[1] }}</h1>
             @else
-                <h1 class="!mb-6 dark:text-white">{{ json_decode($committee->name)[0] }}</h1>
+                <h1 class="mb-6! dark:text-white">{{ json_decode($committee->name)[0] }}</h1>
             @endif
         </div>
         <div class="pt-4">
@@ -33,11 +33,11 @@
     @else
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-4 mb-6">
             <div>
-                <div class="results-info-box !border-2 !border-green-700">
+                <div class="results-info-box border-2! border-green-700!">
                     <div><strong>{{ __('messages.seats_voting_rights') }}</strong></div>
                     <div>{{ $committee->seats }}</div>
                 </div>
-                <div class="results-info-box !border-2 !border-lime-500">
+                <div class="results-info-box border-2! border-lime-500!">
                     <div><strong>{{ __('messages.seats_deputy') }}</strong></div>
                     <div>{{ $committee->seats_deputy }}</div>
                 </div>
@@ -82,13 +82,13 @@
             @endif
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-4">
                 <div>
-                    <div class="results-info-box !border-2 !border-green-700">
+                    <div class="results-info-box border-2! border-green-700!">
                         <div><strong>{{ __('messages.seats_voting_rights') }}</strong></div>
                         <div>{{ $list->seats }}</div>
                     </div>
                 </div>
                 <div>
-                    <div class="results-info-box !border-2 !border-lime-500">
+                    <div class="results-info-box border-2! border-lime-500!">
                         <div><strong>{{ __('messages.seats_deputy') }}</strong></div>
                         <div>{{ $list->seats_deputy }}</div>
                     </div>
@@ -102,18 +102,18 @@
                 @if ($candidate->list == $list->id)
                     @if (!$candidate->resigned)
                         @if ($indexPeople < $list->seats)
-                            <a wire:navigate class="candidate-box candidate-box-results !border-2 !border-green-700 !border-solid" href="{{ route('public-candidate', ['id' => $candidate->id, 'election' => $electionID, 'committee' => $committeeID]) }}">
-                            <div class="!py-0 !pr-0">
-                                <span class="candidate-number !bg-green-700 !text-white">{{ $indexPeople + 1 }}</span>
+                            <a wire:navigate class="candidate-box candidate-box-results border-2! border-green-700! border-solid!" href="{{ route('public-candidate', ['id' => $candidate->id, 'election' => $electionID, 'committee' => $committeeID]) }}">
+                            <div class="py-0! pr-0!">
+                                <span class="candidate-number bg-green-700! text-white!">{{ $indexPeople + 1 }}</span>
                             </div>
                         @elseif ($indexPeople < ($list->seats + $list->seats_deputy))
-                            <a wire:navigate class="candidate-box candidate-box-results !border-2 !border-lime-500 !border-solid" href="{{ route('public-candidate', ['id' => $candidate->id, 'election' => $electionID, 'committee' => $committeeID]) }}">
-                            <div class="!py-0 !pr-0">
-                                <span class="candidate-number !bg-lime-500 !text-zinc-800">{{ $indexPeople + 1 }}</span>
+                            <a wire:navigate class="candidate-box candidate-box-results border-2! border-lime-500! border-solid!" href="{{ route('public-candidate', ['id' => $candidate->id, 'election' => $electionID, 'committee' => $committeeID]) }}">
+                            <div class="py-0! pr-0!">
+                                <span class="candidate-number bg-lime-500! text-zinc-800!">{{ $indexPeople + 1 }}</span>
                             </div>
                         @else
                             <a wire:navigate class="candidate-box candidate-box-results" href="{{ route('public-candidate', ['id' => $candidate->id, 'election' => $electionID, 'committee' => $committeeID]) }}">
-                            <div class="!py-0 !pr-0">
+                            <div class="py-0! pr-0!">
                                 <span class="candidate-number">{{ $indexPeople + 1 }}</span>
                             </div>
                         @endif
@@ -140,7 +140,7 @@
             @endforeach
 
             @if ($indexPeople == 0)
-                <div class="px-6 py-3 bg-zinc-100 dark:bg-zinc-800 rounded-md shadow-sm dark:shadow-md border border-zinc-300 dark:border-zinc-600 overflow-hidden mb-4 dark:text-white">
+                <div class="px-6 py-3 bg-zinc-100 dark:bg-zinc-800 rounded-md shadow-xs dark:shadow-md border border-zinc-300 dark:border-zinc-600 overflow-hidden mb-4 dark:text-white">
                     {{ __('messages.no_candidates_list') }}
                 </div>
             @endif
@@ -151,7 +151,7 @@
                     @foreach ($candidates as $candidate)
                         @if ($candidate->resigned)
                             <a wire:navigate class="candidate-box candidate-box-resigned" href="{{ route('public-candidate', ['id' => $candidate->id, 'election' => $electionID, 'committee' => $committeeID]) }}">
-                                <div class="!py-0 !pr-0">
+                                <div class="py-0! pr-0!">
                                     <span class="candidate-number" aria-hidden="true">
                                         @svg('mdi-close-circle-outline', 'size-6')
                                     </span>
@@ -180,18 +180,18 @@
         @foreach ($candidates as $candidate)
             @if (!$candidate->resigned)
                 @if ($indexPeople < $committee->seats)
-                    <a wire:navigate class="candidate-box candidate-box-results !border-2 !border-green-700" href="{{ route('public-candidate', ['id' => $candidate->id, 'election' => $electionID, 'committee' => $committeeID]) }}">
-                    <div class="!py-0 !pr-0">
-                        <span class="candidate-number !bg-green-700 !text-white">{{ $indexPeople + 1 }}</span>
+                    <a wire:navigate class="candidate-box candidate-box-results border-2! border-green-700!" href="{{ route('public-candidate', ['id' => $candidate->id, 'election' => $electionID, 'committee' => $committeeID]) }}">
+                    <div class="py-0! pr-0!">
+                        <span class="candidate-number bg-green-700! text-white!">{{ $indexPeople + 1 }}</span>
                     </div>
                 @elseif ($indexPeople < ($committee->seats + $committee->seats_deputy))
-                    <a wire:navigate class="candidate-box candidate-box-results !border-2 !border-lime-500" href="{{ route('public-candidate', ['id' => $candidate->id, 'election' => $electionID, 'committee' => $committeeID]) }}">
-                    <div class="!py-0 !pr-0">
-                        <span class="candidate-number !bg-lime-500 !text-zinc-800">{{ $indexPeople + 1 }}</span>
+                    <a wire:navigate class="candidate-box candidate-box-results border-2! border-lime-500!" href="{{ route('public-candidate', ['id' => $candidate->id, 'election' => $electionID, 'committee' => $committeeID]) }}">
+                    <div class="py-0! pr-0!">
+                        <span class="candidate-number bg-lime-500! text-zinc-800!">{{ $indexPeople + 1 }}</span>
                     </div>
                 @else
                     <a wire:navigate class="candidate-box candidate-box-results" href="{{ route('public-candidate', ['id' => $candidate->id, 'election' => $electionID, 'committee' => $committeeID]) }}">
-                    <div class="!py-0 !pr-0">
+                    <div class="py-0! pr-0!">
                         <span class="candidate-number">{{ $indexPeople + 1 }}</span>
                     </div>
                 @endif
@@ -218,7 +218,7 @@
                 @foreach ($candidates as $candidate)
                     @if ($candidate->resigned)
                         <a wire:navigate class="candidate-box candidate-box-resigned" href="{{ route('public-candidate', ['id' => $candidate->id, 'election' => $electionID, 'committee' => $committeeID]) }}">
-                            <div class="!py-0 !pr-0">
+                            <div class="py-0! pr-0!">
                                     <span class="candidate-number" aria-hidden="true">
                                         @svg('mdi-close-circle-outline', 'size-6')
                                     </span>

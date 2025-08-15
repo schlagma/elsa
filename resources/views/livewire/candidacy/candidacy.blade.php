@@ -1,4 +1,4 @@
-<div class="p-6 sm:p-8 !pb-0">
+<div class="p-6 sm:p-8 pb-0!">
     <div class="xl:flex xl:items-center">
         <div class="sm:flex-auto">
             <h1 class="text-2xl font-bold leading-6 text-zinc-800 dark:text-white">{{ __('candidacy.candidacyTitle') }}</h1>
@@ -59,7 +59,7 @@
     </div>
 
     <h2 class="mt-10 dark:text-white">{{ __('candidacy.committee') }}</h2>
-    <div class="grid grid-cols-[auto_1fr] mb-6 shadow-sm dark:shadow-md col-span-2 dark:text-white">
+    <div class="grid grid-cols-[auto_1fr] mb-6 shadow-xs dark:shadow-md col-span-2 dark:text-white">
         <div class="bg-yellow-400 p-2 h-full border border-yellow-500 rounded-l-md text-zinc-800">
             <span aria-hidden="true">@svg('mdi-alert-circle-outline', 'size-6')</span>
         </div>

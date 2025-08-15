@@ -1,5 +1,5 @@
 <div class="grid grid-rows-[auto_1fr] h-screen grow bg-zinc-50 dark:bg-zinc-800">
-    <a class="flex h-16 px-6 shrink-0 items-center bg-zinc-800 border-b border-zinc-900 shadow-sm shadow-black/20" href="/admin">
+    <a class="flex h-16 px-6 shrink-0 items-center bg-zinc-800 border-b border-zinc-900 shadow-xs shadow-black/20" href="/admin">
         <img class="h-8 w-auto" src="{{ asset('logo.svg') }}" alt="Wahlen an der TU Ilmenau">
     </a>
     <nav class="flex flex-1 flex-col px-6 py-4 h-full overflow-y-auto border-r border-zinc-300 dark:border-zinc-900">

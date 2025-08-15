@@ -11,15 +11,15 @@
             </p>
             @if(app()->getLocale() == "en")
                 @if ($committee->lists)
-                    <h1 class="!mb-2 dark:text-white">{{ json_decode($committee->name)[1] }}</h1>
+                    <h1 class="mb-2! dark:text-white">{{ json_decode($committee->name)[1] }}</h1>
                 @else
-                    <h1 class="!mb-6 dark:text-white">{{ json_decode($committee->name)[1] }}</h1>
+                    <h1 class="mb-6! dark:text-white">{{ json_decode($committee->name)[1] }}</h1>
                 @endif
             @else
                 @if ($committee->lists)
-                    <h1 class="!mb-2 dark:text-white">{{ json_decode($committee->name)[0] }}</h1>
+                    <h1 class="mb-2! dark:text-white">{{ json_decode($committee->name)[0] }}</h1>
                 @else
-                    <h1 class="!mb-6 dark:text-white">{{ json_decode($committee->name)[0] }}</h1>
+                    <h1 class="mb-6! dark:text-white">{{ json_decode($committee->name)[0] }}</h1>
                 @endif
             @endif
         </div>
@@ -44,13 +44,13 @@
             @endif
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-4">
                 <div>
-                    <div class="results-info-box !border-2 !border-emerald-800">
+                    <div class="results-info-box border-2! border-emerald-800!">
                         <div><strong>{{ __('messages.seats_voting_rights') }}</strong></div>
                         <div>{{ $list->seats }}</div>
                     </div>
                 </div>
                 <div>
-                    <div class="results-info-box !border-2 !border-lime-600">
+                    <div class="results-info-box border-2! border-lime-600!">
                         <div><strong>{{ __('messages.seats_deputy') }}</strong></div>
                         <div>{{ $list->seats_deputy }}</div>
                     </div>
@@ -80,7 +80,7 @@
                 @endif
             @endforeach
             @if ($indexPeople == 0)
-                <div class="px-6 py-3 bg-zinc-100 dark:bg-zinc-800 rounded-md shadow-sm dark:shadow-md border border-zinc-300 dark:border-zinc-600 overflow-hidden mb-4 dark:text-white">
+                <div class="px-6 py-3 bg-zinc-100 dark:bg-zinc-800 rounded-md shadow-xs dark:shadow-md border border-zinc-300 dark:border-zinc-600 overflow-hidden mb-4 dark:text-white">
                     {{ __('messages.no_candidates_list') }}
                 </div>
             @endif
@@ -88,13 +88,13 @@
     @else
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-4 mb-6">
             <div>
-                <div class="results-info-box !border-2 !border-emerald-800">
+                <div class="results-info-box border-2! border-emerald-800!">
                     <div><strong>{{ __('messages.seats_voting_rights') }}</strong></div>
                     <div>{{ $committee->seats }}</div>
                 </div>
             </div>
             <div>
-                <div class="results-info-box !border-2 !border-lime-600">
+                <div class="results-info-box border-2! border-lime-600!">
                     <div><strong>{{ __('messages.seats_deputy') }}</strong></div>
                     <div>{{ $committee->seats_deputy }}</div>
                 </div>
@@ -102,7 +102,7 @@
         </div>
         @foreach ($candidates as $candidate)
             <a wire:navigate class="candidate-box" href="{{ route('public-candidate', ['id' => $candidate->id, 'election' => $electionID, 'committee' => $committeeID]) }}">
-                <div class="!py-0 !pr-0">
+                <div class="py-0! pr-0!">
                     <span class="candidate-number">{{ $loop->iteration }}</span>
                 </div>
                 <div><strong>{{ trim($candidate->firstname) }} {{ trim($candidate->lastname) }}</strong></div>

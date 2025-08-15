@@ -1,4 +1,4 @@
-<div class="flex h-16 shrink-0 items-center gap-x-4 border-b border-zinc-900 bg-zinc-800 pr-4 shadow-sm shadow-black/30 sm:gap-x-6 sm:pr-6 lg:pr-8 z-10 print:hidden">
+<div class="flex h-16 shrink-0 items-center gap-x-4 border-b border-zinc-900 bg-zinc-800 pr-4 shadow-xs shadow-black/30 sm:gap-x-6 sm:pr-6 lg:pr-8 z-10 print:hidden">
     <a wire:navigate href="/" class="flex h-full items-center border-b-0 sm:w-[18rem] px-6">
         <img class="h-8 w-auto hidden sm:inline" src="{{ asset('logo.svg') }}" alt="{{ config('app.name') }}">
         <img class="h-8 w-auto sm:hidden" src="{{ asset('logo-small.svg') }}" alt="{{ config('app.name') }}">
@@ -56,13 +56,13 @@
                 @endauth
                 <div class="py-1" role="none">
                     @guest
-                    <a href="/auth/login" class="group flex w-full items-center px-4 py-2 text-zinc-800 dark:text-white cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700 focus:bg-zinc-200 dark:focus:bg-zinc-700 !border-b-0" role="menuitem" tabindex="-1" id="menu-item-3">
+                    <a href="/auth/login" class="group flex w-full items-center px-4 py-2 text-zinc-800 dark:text-white cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700 focus:bg-zinc-200 dark:focus:bg-zinc-700 border-b-0!" role="menuitem" tabindex="-1" id="menu-item-3">
                         <span aria-hidden="true">@svg('mdi-login', 'mr-3 size-5 text-zinc-500')</span>
                         {{ __('common.login') }}
                     </a>
                     @endguest
                     @auth
-                    <a href="/auth/logout" class="group flex w-full items-center px-4 py-2 text-zinc-800 dark:text-white cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700 focus:bg-zinc-200 dark:focus:bg-zinc-700 !border-b-0" role="menuitem" tabindex="-1" id="menu-item-3">
+                    <a href="/auth/logout" class="group flex w-full items-center px-4 py-2 text-zinc-800 dark:text-white cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700 focus:bg-zinc-200 dark:focus:bg-zinc-700 border-b-0!" role="menuitem" tabindex="-1" id="menu-item-3">
                         <span aria-hidden="true">@svg('mdi-logout', 'mr-3 size-5 text-zinc-500')</span>
                         {{ __('common.logout') }}
                     </a>

@@ -30,7 +30,7 @@
                 <a
                     wire:navigate
                     href="{{ route('election', ['election' => $item->id]) }}"
-                    class="group flex w-full items-center px-4 py-2 text-zinc-800 dark:text-white cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700 focus:bg-zinc-200 dark:focus:bg-zinc-700 !border-b-0 {{ $electionID == $item->id ? 'bg-zinc-300 hover:bg-zinc-300 dark:bg-zinc-600 dark:hover:bg-zinc-700' : '' }}"
+                    class="group flex w-full items-center px-4 py-2 text-zinc-800 dark:text-white cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700 focus:bg-zinc-200 dark:focus:bg-zinc-700 border-b-0! {{ $electionID == $item->id ? 'bg-zinc-300 hover:bg-zinc-300 dark:bg-zinc-600 dark:hover:bg-zinc-700' : '' }}"
                     role="menuitem"
                 >
                     @if (app()->getLocale() === 'de')
