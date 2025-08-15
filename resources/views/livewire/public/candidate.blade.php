@@ -81,7 +81,11 @@
             </div>
         </div>
         @if($candidate->picture != '')
-            <div class="row-span-2 text-center w-full">
+            @if(!$textExists)
+                <div class="row-span-2 text-center w-full">
+            @else
+                <div class="row-span-2 text-center w-full mt-8 xl:mt-0">
+            @endif
                 <img class="border border-zinc-300 shadow-sm dark:shadow-md dark:border-zinc-600 rounded-md max-h-72 xl:max-h-none mb-8 xl:mb-0 mx-auto" src="{{ $pictureUrl }}" alt="{{ __('messages.pictureOf') . ' ' . $candidate->firstname . ' ' . $candidate->lastname }}" />
             </div>
         @endif
