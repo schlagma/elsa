@@ -64,24 +64,24 @@ class CandidatesAdd extends Component
 
     public function save()
     {
-        $candidates = explode(PHP_EOL, $this->candidates);
+        $candidates = $this->candidates->toArray();
         foreach ($candidates as $candidate) {
             $ds = ldap_connect(config('app.uni_ldap_host'));
             if ($ds) {
-                $filter = "(|(mail=$candidate->email))";
+                $filter = "(|(mail=" . $candidate['email'] . "))";
                 $result = ldap_search($ds, config('app.uni_ldap_base'), $filter);
                 $info = ldap_get_entries($ds, $result);
 
-                if ($info["count"] == 1) {
+                if ($info['count'] == 1) {
                     DB::table('candidates')->updateOrInsert([
                         'election' => $this->election,
                         'committee' => $this->committee,
-                        'lastname' => $info[0]["sn"][0],
-                        'firstname' => $info[0]["givenname"][0],
-                        'email' => $candidate->email,
+                        'lastname' => $info[0]['sn'][0],
+                        'firstname' => $info[0]['givenname'][0],
+                        'email' => $candidate['email'],
                         'picture' => null,
-                        'course' => $candidate->course,
-                        'faculty' => $candidate->faculty,
+                        'course' => $candidate['course'],
+                        'faculty' => $candidate['faculty'],
                         'list' => $this->list,
                         'answers' => null,
                         'candidacy_received' => date('Y-m-d H:i:s'),
@@ -96,5 +96,8 @@ class CandidatesAdd extends Component
                 Log::error("Connecting to LDAP failed.");
             }
         }
+
+        Toaster::success('admin.added');
+        $this->redirect('/admin/candidates', navigate: true);
     }
 }

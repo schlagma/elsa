@@ -27,7 +27,7 @@ class CandidatesEdit extends Component
     public ?int $list = null;
     public array $answersDE = [];
     public array $answersEN = [];
-    public int $votes;
+    public ?int $votes;
     public bool $resigned;
     public $candidacyReceived;
     public bool $approved;
