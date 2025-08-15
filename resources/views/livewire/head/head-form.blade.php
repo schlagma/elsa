@@ -47,8 +47,8 @@
                     <p class="truncate text-zinc-800 dark:text-white font-bold" role="none">{{ Auth::user()->name }}</p>
                     @can('admin', Auth::user())
                     <p class="text-sm text-zinc-500 dark:text-zinc-400" role="none">{{ __('roles.admin') }}</p>
-                    @elsecan('election-committee', Auth::user())
-                    <p class="text-sm text-zinc-500 dark:text-zinc-400" role="none">{{ __('roles.electionCommittee') }}</p>
+                    @elsecan('election-commission', Auth::user())
+                    <p class="text-sm text-zinc-500 dark:text-zinc-400" role="none">{{ __('roles.electionCommission') }}</p>
                     @else
                     <p class="text-sm text-zinc-500 dark:text-zinc-400" role="none">{{ __('roles.user') }}</p>
                     @endcan

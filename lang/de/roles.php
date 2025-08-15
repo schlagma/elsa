@@ -2,6 +2,6 @@
 
 return [
     'admin' => 'Administrator:in',
-    'election-committee' => 'Wahlkommission',
+    'electionCommission' => 'Wahlkommission',
     'user' => 'Benutzer:in',
 ];
