@@ -1,7 +1,14 @@
 <div class="p-6 sm:p-8 dark:text-white">
     <div class="grid grid-cols-[1fr_auto] gap-x-4">
         <div>
-            <p class="mb-2 dark:text-white">{{ __('messages.results') }}</p>
+            <p class="mb-2 dark:text-white">
+                @if(app()->getLocale() == "en")
+                    {{ $electionName[1] }} &rarr;
+                @else
+                    {{ $electionName[0] }} &rarr;
+                @endif
+                {{ __('messages.results') }}
+            </p>
             @if(app()->getLocale() == "en")
                 <h1 class="!mb-6 dark:text-white">{{ json_decode($committee->name)[1] }}</h1>
             @else

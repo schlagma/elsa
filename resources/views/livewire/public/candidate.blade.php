@@ -1,6 +1,11 @@
 <div class="p-6 sm:p-8 dark:text-white">
     <div>
         <p class="mb-2 dark:text-white">
+            @if(app()->getLocale() == "en")
+                {{ $electionName[1] }} &rarr;
+            @else
+                {{ $electionName[0] }} &rarr;
+            @endif
             {{ __('messages.candidates') }} &rarr;
             @if ($allVotesCounted)
                 <a wire:navigate class="text-black dark:text-white" href="{{ route('public-results', ['election' => $electionID, 'committee' => $committeeID]) }}">@if(app()->getLocale() == "en"){{ $committeeName[1] }}@else{{ $committeeName[0] }}@endif</a></p>

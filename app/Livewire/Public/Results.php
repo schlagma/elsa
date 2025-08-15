@@ -13,7 +13,7 @@ class Results extends Component
     public function render(Request $request)
     {    
         $election = DB::table('elections')
-            ->select('public')
+            ->select('name', 'public')
             ->where('id', $request->election)
             ->first();
 
@@ -49,6 +49,7 @@ class Results extends Component
 
         return view('livewire.public.results', [
             'electionID' => $request->election,
+            'electionName' => json_decode($election->name),
             'committeeID' => $request->committee,
             'candidates' => $candidates,
             'results' => $results,

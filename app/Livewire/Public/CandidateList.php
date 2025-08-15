@@ -16,7 +16,7 @@ class CandidateList extends Component
         $committeeID = $request->committee;
     
         $election = DB::table('elections')
-            ->select('public', 'all_votes_counted')
+            ->select('name', 'public', 'all_votes_counted')
             ->where('id', $electionID)
             ->first();
 
@@ -53,6 +53,7 @@ class CandidateList extends Component
     
         return view('livewire.public.candidate-list', [
             'electionID' => $electionID,
+            'electionName' => json_decode($election->name),
             'committeeID' => $committeeID,
             'candidates' => $candidates,
             'lists' => $lists,
