@@ -22,7 +22,8 @@
                     <span class="sr-only">Open user menu</span>
                     <span class="flex items-center">
                         <span aria-hidden="true">@svg('mdi-account-circle', 'size-6')</span>
-                        <span aria-hidden="true">@svg('mdi-chevron-down', 'ml-2 h-5 w-5 text-zinc-300')</span>
+                        <span x-show="profileDropdown" aria-hidden="true">@svg('mdi-chevron-up', 'ml-2 h-5 w-5 text-zinc-300')</span>
+                        <span x-show="!profileDropdown" aria-hidden="true">@svg('mdi-chevron-down', 'ml-2 h-5 w-5 text-zinc-300')</span>
                     </span>
                 </button>
             </div>

@@ -60,7 +60,7 @@
   }
 
   main & table td {
-    @apply border border-zinc-400 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-700 px-3! py-1.5;
+    @apply border border-zinc-400 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-700 px-3! py-1.5 min-w-[8rem];
   }
 
   main & table tr:nth-child(2n + 1) td {
@@ -384,11 +384,11 @@
   }
 
   main h2 {
-    @apply text-xl font-bold mt-6 mb-4;
+    @apply text-xl font-bold mt-9 mb-4;
   }
 
   main h3 {
-    @apply text-lg font-bold mt-6 mb-4;
+    @apply text-lg font-bold mt-9 mb-4;
   }
 
   main p {

@@ -7,7 +7,8 @@
                 <span class="sr-only">Open language menu</span>
                 <span class="flex items-center">
                     <span aria-hidden="true">@svg('mdi-translate', 'size-6')</span>
-                    <span aria-hidden="true">@svg('mdi-chevron-down', 'ml-2 h-5 w-5 text-zinc-300')</span>
+                    <span x-show="languageDropdown" aria-hidden="true">@svg('mdi-chevron-up', 'ml-2 h-5 w-5 text-zinc-300')</span>
+                    <span x-show="!languageDropdown" aria-hidden="true">@svg('mdi-chevron-down', 'ml-2 h-5 w-5 text-zinc-300')</span>
                 </span>
             </button>
         </div>
