@@ -5,7 +5,7 @@ return [
     'accessibilityStatementEN' => 'Barrierefreiheitserklärung (EN)',
     'active' => 'Aktiv',
     'added' => 'Hinzugefügt',
-    'addElection' => 'Abstimmung hinzufügen',
+    'addElection' => 'Wahl hinzufügen',
     'addCandidate' => 'Kandidat:in hinzufügen',
     'addCandidates' => 'Kandidat:innen hinzufügen',
     'addCommittee' => 'Gremium hinzufügen',
