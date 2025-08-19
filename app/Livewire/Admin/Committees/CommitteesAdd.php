@@ -46,7 +46,7 @@ class CommitteesAdd extends Component
             'infotext' => json_encode($infotext),
             'seats' => $this->seats,
             'seats_deputy' => $this->seatsDeputy,
-            'elections' => json_encode($this->comitteeElections),
+            'elections' => json_encode(array_map('intval', $this->comitteeElections)),
             'lists' => $this->lists,
             'lists_quoted' => $this->listsQuoted,
             'active' => $this->active,

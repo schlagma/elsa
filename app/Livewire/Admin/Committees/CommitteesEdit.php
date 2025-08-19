@@ -71,7 +71,7 @@ class CommitteesEdit extends Component
             'description' => json_encode($infotext),
             'seats' => $this->seats,
             'seats_deputy' => $this->seatsDeputy,
-            'elections' => json_encode($this->committeeElections),
+            'elections' => json_encode(array_map('intval', $this->committeeElections)),
             'lists' => $this->lists,
             'lists_quoted' => $this->listsQuoted,
             'active' => $this->active,
