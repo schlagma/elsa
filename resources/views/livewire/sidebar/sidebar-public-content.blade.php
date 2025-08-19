@@ -18,6 +18,7 @@
                     </li>
                 </ul>
             </li>
+            @if(count($committees) > 0)
             <li>
                 @if($allVotesCounted)
                     <div class="font-semibold leading-6 text-zinc-500 dark:text-zinc-300 mb-2">{{ __('messages.results') }}</div>
@@ -65,6 +66,7 @@
                     @endforeach
                 </ul>
             </li>
+            @endif
         </ul>
     </nav>
 </div>
