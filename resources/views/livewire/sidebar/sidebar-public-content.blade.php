@@ -1,4 +1,4 @@
-<div class="grid grid-rows-[auto_1fr] h-screen grow bg-zinc-50 dark:bg-zinc-800">
+<div class="grid grid-rows-[auto_1fr] w-full h-screen bg-zinc-100 dark:bg-zinc-800">
     <a wire:navigate class="flex h-16 px-6 shrink-0 items-center bg-zinc-800 border-b border-zinc-900 shadow-xs shadow-black/20" href="{{ route('public-infos', ['election' => $electionID]) }}">
         <img class="h-8 w-auto" src="{{ asset('logo.svg') }}" alt="Wahlen an der TU Ilmenau">
     </a>
@@ -21,11 +21,11 @@
             @if(count($committees) > 0)
             <li>
                 @if($allVotesCounted)
-                    <div class="font-semibold leading-6 text-zinc-500 dark:text-zinc-300 mb-2">{{ __('messages.results') }}</div>
+                    <div class="font-semibold leading-6 text-zinc-600 dark:text-zinc-300 mb-2">{{ __('messages.results') }}</div>
                 @elseif($candidatesExist)
-                    <div class="font-semibold leading-6 text-zinc-500 dark:text-zinc-300 mb-2">{{ __('messages.candidates') }}</div>
+                    <div class="font-semibold leading-6 text-zinc-600 dark:text-zinc-300 mb-2">{{ __('messages.candidates') }}</div>
                 @else
-                    <div class="font-semibold leading-6 text-zinc-500 dark:text-zinc-300 mb-2">{{ __('messages.committee_infos') }}</div>
+                    <div class="font-semibold leading-6 text-zinc-600 dark:text-zinc-300 mb-2">{{ __('messages.committee_infos') }}</div>
                 @endif
                 <ul role="list" class="-mx-2 space-y-1">
                     @foreach ($committees as $committee)

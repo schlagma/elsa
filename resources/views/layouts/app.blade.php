@@ -14,7 +14,7 @@
         @vite('resources/js/app.js')
     </head>
     <body x-data="{ mobileMenu: false, dialogInfo: false, profileDropdown: false }">
-        <div class="body grid lg:grid-rows-[4rem_1fr_3rem]">
+        <div class="body">
             <livewire:sidebar.sidebar-admin />
             <div class="grid grid-rows-[4rem_1fr] w-full h-screen">
                 <livewire:head.head-admin />
