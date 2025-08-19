@@ -43,10 +43,10 @@ class CommitteesAdd extends Component
 
         DB::table('committees')->updateOrInsert([
             'name' => json_encode($name),
-            'infotext' => json_encode($infotext),
+            'description' => json_encode($infotext),
             'seats' => $this->seats,
             'seats_deputy' => $this->seatsDeputy,
-            'elections' => json_encode(array_map('intval', $this->comitteeElections)),
+            'elections' => json_encode(array_map('intval', $this->committeeElections)),
             'lists' => $this->lists,
             'lists_quoted' => $this->listsQuoted,
             'active' => $this->active,
