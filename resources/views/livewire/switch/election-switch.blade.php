@@ -12,7 +12,7 @@
                 </span>
             </button>
         </div>
-        <div class="absolute right-0 z-10 mt-4 origin-top-right max-h-[calc(100vh_-_7rem)] overflow-y-auto divide-y divide-zinc-200 dark:divide-zinc-700 rounded-md bg-white dark:bg-zinc-800 ring-1 shadow-lg ring-black/5 dark:ring-zinc-700 focus:outline-hidden"
+        <div class="absolute right-0 z-10 mt-4 w-44 origin-top-right max-h-[calc(100vh_-_7rem)] overflow-y-auto divide-y divide-zinc-200 dark:divide-zinc-700 rounded-md bg-white dark:bg-zinc-800 ring-1 shadow-lg ring-black/5 dark:ring-zinc-700 focus:outline-hidden"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="menu-button"
