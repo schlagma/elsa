@@ -13,7 +13,7 @@
         @vite('resources/css/app.css')
         @vite('resources/js/app.js')
     </head>
-    <body x-data="{ mobileMenu: false, dialogInfo: false, profileDropdown: false, cart: $persist([]) }">
+    <body x-data="{ mobileMenu: false, dialogInfo: false }">
         <div class="body">
             <div class="grid grid-rows-[4rem_1fr] w-full h-screen">
                 <livewire:head.head-form />

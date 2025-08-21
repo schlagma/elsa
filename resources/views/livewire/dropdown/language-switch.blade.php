@@ -1,18 +1,17 @@
-<div x-data="{ languageDropdown: false }" class="ml-2">
+<div x-data="{ languageDropdown: false }" class="ml-1">
     <div class="relative">
-        <div>
-            <button type="button" aria-haspopup="menu" aria-expanded="false"
-                class="-m-1.5 flex items-center py-1.5 pl-1 pr-2 text-zinc-300 hover:text-zinc-100 cursor-pointer"
-                @click="languageDropdown = true">
-                <span class="sr-only">Open language menu</span>
-                <span class="flex items-center">
-                    <span aria-hidden="true">@svg('mdi-translate', 'size-6')</span>
-                    <span x-show="languageDropdown" aria-hidden="true">@svg('mdi-chevron-up', 'ml-2 h-5 w-5 text-zinc-300')</span>
-                    <span x-show="!languageDropdown" aria-hidden="true">@svg('mdi-chevron-down', 'ml-2 h-5 w-5 text-zinc-300')</span>
-                </span>
-            </button>
-        </div>
-        <div class="absolute right-0 z-10 mt-4 w-44 origin-top-right divide-y divide-zinc-200 dark:divide-zinc-700 rounded-md bg-white dark:bg-zinc-800 ring-1 shadow-lg ring-black/5 dark:ring-zinc-700 focus:outline-hidden"
+        <button type="button" aria-haspopup="menu" aria-expanded="false"
+            class="-m-1.5 flex items-center py-1.5 pl-2.5 pr-1.5 text-zinc-300 hover:text-zinc-100 cursor-pointer rounded"
+            :class="{ 'bg-zinc-700' : languageDropdown }"
+            @click="languageDropdown = true">
+            <span class="sr-only">Open language menu</span>
+            <span class="flex items-center">
+                <span aria-hidden="true">@svg('mdi-translate', 'size-6')</span>
+                <span x-show="languageDropdown" aria-hidden="true">@svg('mdi-chevron-up', 'ml-2 h-5 w-5 text-zinc-300')</span>
+                <span x-show="!languageDropdown" aria-hidden="true">@svg('mdi-chevron-down', 'ml-2 h-5 w-5 text-zinc-300')</span>
+            </span>
+        </button>
+        <div class="absolute -right-1.5 z-10 mt-4 w-44 origin-top-right divide-y divide-zinc-200 dark:divide-zinc-700 rounded-md bg-white dark:bg-zinc-800 ring-1 shadow-lg ring-black/5 dark:ring-zinc-700 focus:outline-hidden"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="menu-button"

@@ -6,11 +6,11 @@
         </svg>
     </button>
 
-    <livewire:switch.election-switch />
-    <livewire:switch.language-switch />
+    <livewire:dropdown.election-switch />
+    <livewire:dropdown.language-switch />
 
     <button
-        class="-m-2.5 p-2.5 text-zinc-300 hover:text-zinc-100 cursor-pointer"
+        class="p-1 text-zinc-300 hover:text-zinc-100 cursor-pointer"
         title="{{ __('common.about') }} ELSA &hellip;"
         @click="dialogInfo = true"
     >

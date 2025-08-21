@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Switch;
+namespace App\Livewire\Dropdown;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,7 +18,7 @@ class ElectionSwitch extends Component
             ->orderByDesc('id')
             ->get();
 
-        return view('livewire.switch.election-switch', [
+        return view('livewire.dropdown.election-switch', [
             'elections' => $elections,
             'electionID' => $request->election,
         ]);

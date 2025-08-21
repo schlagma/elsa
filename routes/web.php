@@ -68,5 +68,5 @@ Route::group(['middleware'=>['auth']], function() {
 });
 
 // Service Routes
-Route::get('/language/{language}', [\App\Livewire\Switch\LanguageSwitch::class, 'switchLanguage'])->name('language');
-Route::get('/election/{election}', [\App\Livewire\Switch\ElectionSwitch::class, 'switchElection'])->name('election');
+Route::get('/language/{language}', [\App\Livewire\Dropdown\LanguageSwitch::class, 'switchLanguage'])->name('language');
+Route::get('/election/{election}', [\App\Livewire\Dropdown\ElectionSwitch::class, 'switchElection'])->name('election');
