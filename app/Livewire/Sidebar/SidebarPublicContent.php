@@ -23,6 +23,7 @@ class SidebarPublicContent extends Component
 
         return view('livewire.sidebar.sidebar-public-content', [
             'electionID' => $request->election,
+            'committeeID' => $request->committee,
             'candidatesExist' => $electionState->candidates_exist,
             'allVotesCounted' => $electionState->all_votes_counted,
             'committees' => $committees,
