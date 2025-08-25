@@ -25,15 +25,15 @@
             x-transition:leave-end="transform opacity-0 scale-95"
             @click.outside="languageDropdown = false"
         >
-            <div class="py-1" role="none">
+            <div class="flex flex-col gap-1 p-1" role="none">
                 @foreach(config('app.locales') as $key => $locale)
                 <a
                     wire:navigate
                     href="{{ route('language', ['language' => $key]) }}"
-                    class="group flex w-full items-center px-4 py-2 text-zinc-800 dark:text-white cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700 focus:bg-zinc-200 dark:focus:bg-zinc-700 border-b-0! {{ app()->getLocale() === $key ? 'bg-zinc-300 hover:bg-zinc-300 dark:bg-zinc-600 dark:hover:bg-zinc-700' : '' }}"
+                    class="group flex w-full items-center px-3 py-2 text-zinc-800 dark:text-white cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700 focus:bg-zinc-200 dark:focus:bg-zinc-700 border-b-0! rounded {{ app()->getLocale() === $key ? 'bg-zinc-300 hover:bg-zinc-300 dark:bg-zinc-600 dark:hover:bg-zinc-700' : '' }}"
                     role="menuitem"
                 >
-                    <span aria-hidden="true" class="mr-2">
+                    <span aria-hidden="true" class="mr-3">
                         <x-icon name="flag-language-{{ $key }}" class="size-6" />
                     </span>
                     {{ $locale['name'] }}

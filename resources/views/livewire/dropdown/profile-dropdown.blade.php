@@ -37,15 +37,15 @@
             @endcan
         </div>
         @endauth
-        <div class="py-1" role="none">
+        <div class="p-1" role="none">
             @guest
-            <a href="/auth/login" class="group flex w-full items-center px-4 py-2 text-zinc-800 dark:text-white cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700 focus:bg-zinc-200 dark:focus:bg-zinc-700 border-b-0!" role="menuitem" tabindex="-1" id="menu-item-3">
+            <a href="/auth/login" class="group flex w-full items-center px-3 py-2 text-zinc-800 dark:text-white cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700 focus:bg-zinc-200 dark:focus:bg-zinc-700 border-b-0! rounded" role="menuitem" tabindex="-1" id="menu-item-3">
                 <span aria-hidden="true">@svg('mdi-login', 'mr-3 size-5 text-zinc-500')</span>
                 {{ __('common.login') }}
             </a>
             @endguest
             @auth
-            <a href="/auth/logout" class="group flex w-full items-center px-4 py-2 text-zinc-800 dark:text-white cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700 focus:bg-zinc-200 dark:focus:bg-zinc-700 border-b-0!" role="menuitem" tabindex="-1" id="menu-item-3">
+            <a href="/auth/logout" class="group flex w-full items-center px-3 py-2 text-zinc-800 dark:text-white cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700 focus:bg-zinc-200 dark:focus:bg-zinc-700 border-b-0! rounded" role="menuitem" tabindex="-1" id="menu-item-3">
                 <span aria-hidden="true">@svg('mdi-logout', 'mr-3 size-5 text-zinc-500')</span>
                 {{ __('common.logout') }}
             </a>
