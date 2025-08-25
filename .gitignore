@@ -18,3 +18,10 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+/public/logo.svg
+/public/logo-small.svg
+/public/favicon.ico
+/public/favicon.png
+/public/apple-touch-icon.png
+/public/elsa-og-image.jpg
