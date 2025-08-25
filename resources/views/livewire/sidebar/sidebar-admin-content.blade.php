@@ -1,6 +1,10 @@
 <div class="grid grid-rows-[auto_1fr] w-full h-screen bg-zinc-100 dark:bg-zinc-800">
     <a class="flex h-16 px-6 shrink-0 items-center bg-zinc-800 border-b border-zinc-900 shadow-xs shadow-black/20" href="/admin">
-        <img class="h-8 w-auto" src="{{ asset('logo.svg') }}" alt="Wahlen an der TU Ilmenau">
+        @if (file_exists(public_path('logo.svg')))
+            <img class="h-8 w-auto" src="{{ asset('logo.svg') }}" alt="ELSA-Logo">
+        @else
+            <span class="mx-auto text-white text-xl">ELSA</span>
+        @endif
     </a>
     <nav class="flex flex-1 flex-col px-6 py-4 h-full overflow-y-auto border-r border-zinc-300 dark:border-zinc-900">
         <ul role="list" class="flex flex-1 flex-col gap-y-7">
