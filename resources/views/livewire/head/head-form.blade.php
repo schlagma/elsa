@@ -9,7 +9,7 @@
     </a>
     
     <div class="flex items-center gap-x-6 ml-auto">
-        <livewire:switch.language-switch />
+        <livewire:dropdown.language-switch />
         <button
             class="-m-2.5 p-2.5 text-zinc-300 hover:text-zinc-100 cursor-pointer"
             title="{{ __('common.about') }} ELSA &hellip;"
