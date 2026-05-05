@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}" class="h-full">
     <head>
-        <title>{{ config('app.name') }}</title>
+        <title>{{ config('app.title') }}</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
@@ -15,8 +15,8 @@
         @vite('resources/css/theme.css')
         @vite('resources/js/app.js')
     </head>
-    <body x-data="{ mobileMenu: false, dialogInfo: false, profileDropdown: false, cart: $persist([]) }">
-        <div class="grid grid-rows-[4rem_1fr] w-full h-screen">
+    <body>
+        <div class="grid grid-rows-[auto_1fr] w-full h-full">
             <livewire:head.head-legal />
             <main class="public">
                 {{ $slot }}

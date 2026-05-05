@@ -13,7 +13,9 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'ELSA'),
+
+    'title' => env('APP_TITLE', 'Studentische Gremienwahlen'),
 
     /*
     |--------------------------------------------------------------------------
