@@ -5,8 +5,6 @@
     <div class="flex items-center gap-x-4 ml-auto">
         <livewire:dropdown.election-switch />
         <livewire:dropdown.language-switch />
-        
-        @include('info')
 
         <flux:dropdown>
             @auth
@@ -27,6 +25,16 @@
                     </div>
                     <flux:navmenu.separator />
                 @endauth
+
+                @include('components.info')
+
+                <flux:navmenu.separator />
+
+                <flux:navmenu.item wire:navigate href="{{ route('imprint') }}">{{ __('common.imprint') }}</flux:navmenu.item>
+                <flux:navmenu.item wire:navigate href="{{ route('privacy') }}">{{ __('common.privacyPolicy') }}</flux:navmenu.item>
+                <flux:navmenu.item wire:navigate href="{{ route('accessibility') }}">{{ __('common.accessibility') }}</flux:navmenu.item>
+
+                <flux:navmenu.separator />
 
                 @guest
                     <flux:navmenu.item
