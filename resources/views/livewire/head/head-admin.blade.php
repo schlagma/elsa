@@ -3,6 +3,8 @@
     <div class="hidden md:inline">
     </div>
     <div class="flex items-center gap-x-2 ml-auto">
+        <livewire:dropdown.language-switch />
+        
         <flux:dropdown>
             @auth
                 <flux:profile :chevron="false" avatar:name="{{ auth()->user()->name }}" />
