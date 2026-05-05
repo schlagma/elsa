@@ -4,7 +4,7 @@
             <a wire:navigate href="/" class="h-full flex flex-1 items-center justify-start lg:justify-center px-6">
                 <span class="text-zinc-800 dark:text-white text-xl font-semibold">{{ config('app.name') }}</span>
             </a>
-            <flux:sidebar.collapse class="lg:hidden" />
+            <flux:sidebar.collapse class="mr-3 lg:hidden" />
         </flux:sidebar.header>
 
         <div class="grow overflow-y-auto border-r border-zinc-200 dark:border-zinc-700">
