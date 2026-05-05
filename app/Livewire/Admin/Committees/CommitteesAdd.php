@@ -2,10 +2,10 @@
 
 namespace App\Livewire\Admin\Committees;
 
+use Flux\Flux;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
-use Masmerise\Toaster\Toaster;
 
 #[Layout('layouts.app')]
 class CommitteesAdd extends Component
@@ -53,7 +53,7 @@ class CommitteesAdd extends Component
             'priority' => $this->priority,
         ]);
 
-        Toaster::success('admin.added');
+        Flux::toast(variant: 'success', text: __('admin.added'));
         $this->redirect('/admin/committees', navigate: true);
     }
 }

@@ -10,24 +10,27 @@
         <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
         @livewireStyles
+        @fluxAppearance
         @vite('resources/css/app.css')
+        @vite('resources/css/theme.css')
         @vite('resources/js/app.js')
     </head>
-    <body x-data="{ mobileMenu: false, dialogInfo: false }">
-        <div class="body">
-            <livewire:sidebar.sidebar-admin />
-            <div class="grid grid-rows-[4rem_1fr] w-full h-screen">
-                <livewire:head.head-admin />
-                <main>
-                    {{ $slot }}
-                </main>
-            </div>
+    <body class="flex w-full h-full">
+        <livewire:sidebar.sidebar-admin />
+        <div class="public grid grid-rows-[auto_1fr] w-full h-full">
+            <livewire:head.head-admin />
+            <main class="h-full flex-1 overflow-x-hidden overflow-y-auto">
+                {{ $slot }}
+            </main>
         </div>
 
-        <x-info />
-
-        <x-toaster-hub />
+        @persist('toast')
+            <flux:toast.group position="top end">
+                <flux:toast />
+            </flux:toast.group>
+        @endpersist
 
         @livewireScripts
+        @fluxScripts
     </body>
 </html>

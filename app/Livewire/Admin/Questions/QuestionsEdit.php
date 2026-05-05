@@ -2,12 +2,12 @@
 
 namespace App\Livewire\Admin\Questions;
 
+use Flux\Flux;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
-use Masmerise\Toaster\Toaster;
 
 #[Layout('layouts.app')]
 class QuestionsEdit extends Component
@@ -70,6 +70,6 @@ class QuestionsEdit extends Component
             'committee' => $this->committee,
         ]);
         
-        Toaster::success('admin.updated');
+        Flux::toast(variant: 'success', text: __('admin.updated'));
     }
 }

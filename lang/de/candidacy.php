@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'candidacyTitle' => 'Kandidatur',
+    'candidacy' => 'Kandidatur',
     'candidacySubmitted' => 'Kandidatur eingereicht',
     'committee' => 'Gremium',
     'committeeHint' => 'Für eine produktive Teilnahme an universitären Gremiensitzungen sind ausreichende Kenntnisse der deutschen Sprache unerlässlich.',
@@ -19,4 +19,5 @@ return [
     'noCandidacies' => 'Keine Kandidaturen vorhanden',
     'personAndStudies' => 'Person und Studium',
     'send' => 'Absenden',
+    'submitCandidacy' => 'Kandidatur einreichen',
 ];

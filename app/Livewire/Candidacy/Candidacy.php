@@ -3,11 +3,13 @@
 namespace App\Livewire\Candidacy;
 
 use App\Mail\CandidacyReceived;
+use Flux\Flux;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Locked;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 #[Layout('layouts.form')]
@@ -25,7 +27,15 @@ class Candidacy extends Component
     #[Locked]
     public string $email;
 
+    #[Validate('required')]
+    public $faculty;
+
+    #[Validate('required')]
+    public $course;
+
+    #[Validate('required')]
     public $committee;
+
     public $list;
 
     public function mount(Request $request)
@@ -83,6 +93,8 @@ class Candidacy extends Component
 
     public function save()
     {
+        $this->validate();
+
         DB::table('candidacies')->updateOrInsert([
             'election' => $this->electionID,
             'lastname' => $this->lastname,
@@ -92,7 +104,7 @@ class Candidacy extends Component
             'list' => $this->list,
         ]);
 
-        Toaster::success('candidacy.candidacySubmitted');
+        Flux::toast(variant: 'success', text: __('candidacy.candidacySubmitted'));
 
         Mail::to($this->email)->send(new CandidacyReceived);
     }

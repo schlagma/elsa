@@ -33,6 +33,7 @@ Route::get('/auth/callback', function() {
         'groups' => json_encode($keycloakUser->user['groups']) ?? json_encode([]),
         'keycloak_token' => $keycloakUser->token,
         'keycloak_refresh_token' => $keycloakUser->refreshToken,
+        'keycloak_id_token' => $keycloakUser->accessTokenResponseBody['id_token'],
     ]);
 
     # Log the user in
@@ -43,10 +44,11 @@ Route::get('/auth/callback', function() {
 });
 
 Route::get('/auth/logout', function () {
+    $id_token = auth()->user()->keycloak_id_token;
+
     # Log out the user from the application
     Auth::logout();
 
-    # Tell Keycloak to log out the user and redirect to the base URL of the application
-    $redirectUri = Config::get('app.url');
-    return redirect(Socialite::driver('keycloak')->getLogoutUrl($redirectUri, env('KEYCLOAK_CLIENT_ID')));
+    # Tell Keycloak to log out the user and redirect to last page visited in the application
+    return redirect(Socialite::driver('keycloak')->getLogoutUrl(url()->previous(), env('KEYCLOAK_CLIENT_ID'), $id_token));
 })->name('logout');

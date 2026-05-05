@@ -2,10 +2,10 @@
 
 namespace App\Livewire\Admin\Legal;
 
+use Flux\Flux;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
-use Masmerise\Toaster\Toaster;
 
 #[Layout('layouts.app')]
 class LegalTextsEdit extends Component
@@ -52,6 +52,6 @@ class LegalTextsEdit extends Component
             'accessibility' => json_encode($accessibility),
         ]);
 
-        Toaster::success('admin.updated');
+        Flux::toast(variant: 'success', text: __('admin.updated'));
     }
 }

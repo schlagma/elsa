@@ -10,7 +10,9 @@
         <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
         @livewireStyles
+        @fluxAppearance
         @vite('resources/css/app.css')
+        @vite('resources/css/theme.css')
         @vite('resources/js/app.js')
     </head>
     <body x-data="{ mobileMenu: false, dialogInfo: false, profileDropdown: false, cart: $persist([]) }">
@@ -24,5 +26,6 @@
         <x-info />
 
         @livewireScripts
+        @fluxScripts
     </body>
 </html>

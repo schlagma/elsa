@@ -2,11 +2,11 @@
 
 namespace App\Livewire\Admin\Questions;
 
+use Flux\Flux;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Masmerise\Toaster\Toaster;
 
 #[Layout('layouts.app')]
 class QuestionsAdd extends Component
@@ -51,7 +51,7 @@ class QuestionsAdd extends Component
             'questions' => json_encode($questions),
         ]);
 
-        Toaster::success('admin.added');
+        Flux::toast(variant: 'success', text: __('admin.added'));
         $this->redirect('/admin/questions', navigate: true);
     }
 }

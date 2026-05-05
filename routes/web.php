@@ -27,8 +27,8 @@ Route::get('/accessibility', \App\Livewire\Public\Legal\Accessibility::class)->n
 Route::group(['middleware'=>['auth']], function() {
     Route::get('/{election}/candidacy', \App\Livewire\Candidacy\Candidacy::class)->name('candidacy');
 
-    Route::get('/candidacy/my', \App\Livewire\Candidacy\CandidacyMy::class)->name('candidacy-my');
-    Route::get('/candidacy/{id}/edit', \App\Livewire\Candidacy\CandidacyEdit::class)->name('candidacy-edit');
+    Route::get('/{election}/candidacy/my', \App\Livewire\Candidacy\CandidacyMy::class)->name('candidacy-my');
+    Route::get('/{election}/candidacy/{id}/edit', \App\Livewire\Candidacy\CandidacyEdit::class)->name('candidacy-edit');
 
     Route::get('/admin', [AdminController::class, 'forwardToElectionsIndex'])->name('admin-dashboard')->can('election-commission');
 

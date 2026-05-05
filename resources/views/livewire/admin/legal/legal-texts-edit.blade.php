@@ -6,42 +6,41 @@
     </div>
     <div class="mt-6 mb-12">
         <div class="grid sm:grid-cols-2 gap-6">
-            <div>
-                <label>{{ __('admin.imprintDE') }}</label>
-                <textarea wire:model="imprintDE" class="h-60"></textarea>
-            </div>
-            <div>
-                <label>{{ __('admin.imprintEN') }}</label>
-                <textarea wire:model="imprintEN" class="h-60"></textarea>
-            </div>
+            <flux:field>
+                <flux:label>{{ __('admin.imprintDE') }}</flux:label>
+                <flux:textarea wire:model="imprintDE" class="h-60"></flux:textarea>
+            </flux:field>
+            <flux:field>
+                <flux:label>{{ __('admin.imprintEN') }}</flux:label>
+                <flux:textarea wire:model="imprintEN" class="h-60"></flux:textarea>
+            </flux:field>
         </div>
 
         <div class="mt-6 grid sm:grid-cols-2 gap-6">
-            <div>
-                <label>{{ __('admin.privacyPolicyDE') }}</label>
-                <textarea wire:model="privacyDE" class="h-60"></textarea>
-            </div>
-            <div>
-                <label>{{ __('admin.privacyPolicyEN') }}</label>
-                <textarea wire:model="privacyEN" class="h-60"></textarea>
-            </div>
+            <flux:field>
+                <flux:label>{{ __('admin.privacyPolicyDE') }}</flux:label>
+                <flux:textarea wire:model="privacyDE" class="h-60"></flux:textarea>
+            </flux:field>
+            <flux:field>
+                <flux:label>{{ __('admin.privacyPolicyEN') }}</flux:label>
+                <flux:textarea wire:model="privacyEN" class="h-60"></flux:textarea>
+            </flux:field>
         </div>
 
         <div class="mt-6 grid sm:grid-cols-2 gap-6">
-            <div>
-                <label>{{ __('admin.accessibilityStatementDE') }}</label>
-                <textarea wire:model="accessibilityDE" class="h-60"></textarea>
-            </div>
-            <div>
-                <label>{{ __('admin.accessibilityStatementEN') }}</label>
-                <textarea wire:model="accessibilityEN" class="h-60"></textarea>
-            </div>
+            <flux:field>
+                <flux:label>{{ __('admin.accessibilityStatementDE') }}</flux:label>
+                <flux:textarea wire:model="accessibilityDE" class="h-60"></flux:textarea>
+            </flux:field>
+            <flux:field>
+                <flux:label>{{ __('admin.accessibilityStatementEN') }}</flux:label>
+                <flux:textarea wire:model="accessibilityEN" class="h-60"></flux:textarea>
+            </flux:field>
         </div>
     </div>
     <div class="mt-auto py-6 -mx-8 px-8 flex items-center justify-end gap-x-4 border-t border-zinc-200 dark:border-zinc-900 bg-zinc-100 dark:bg-zinc-800">
-        <button wire:click="save" class="btn-primary">
-            <span aria-hidden="true">@svg('mdi-content-save', '-ml-0.5 size-5')</span>
+        <flux:button variant="primary" icon="save" wire:click="save">
             {{ __('common.save') }}
-        </button>
+        </flux:button>
     </div>
 </div>

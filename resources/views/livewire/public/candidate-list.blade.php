@@ -1,14 +1,16 @@
 <div class="p-6 sm:p-8 dark:text-white">
     <div class="grid grid-cols-[1fr_auto] gap-x-4">
-        <div>
-            <p class="mb-2 dark:text-white">
-                @if(app()->getLocale() == "en")
-                    {{ $electionName[1] }} &rarr;
-                @else
-                    {{ $electionName[0] }} &rarr;
-                @endif
-                {{ __('messages.candidates') }}
-            </p>
+        <div class="space-y-2">
+            <flux:breadcrumbs>
+                <flux:breadcrumbs.item>
+                    @if(app()->getLocale() == "en")
+                        {{ $electionName[1] }}
+                    @else
+                        {{ $electionName[0] }}
+                    @endif
+                </flux:breadcrumbs.item>
+                <flux:breadcrumbs.item>{{ __('messages.candidates') }}</flux:breadcrumbs.item>
+            </flux:breadcrumbs>
             @if(app()->getLocale() == "en")
                 @if ($committee->lists)
                     <h1 class="mb-2! dark:text-white">{{ json_decode($committee->name)[1] }}</h1>

@@ -2,10 +2,10 @@
 
 namespace App\Livewire\Admin\Results;
 
+use Flux\Flux;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
-use Masmerise\Toaster\Toaster;
 
 #[Layout('layouts.app')]
 class ResultsAdd extends Component
@@ -37,7 +37,7 @@ class ResultsAdd extends Component
             'ballots_invalid' => $this->ballotsInvalid,
         ]);
 
-        Toaster::success('admin.added');
+        Flux::toast(variant: 'success', text: __('admin.added'));
         $this->redirect('/admin/results', navigate: true);
     }
 }

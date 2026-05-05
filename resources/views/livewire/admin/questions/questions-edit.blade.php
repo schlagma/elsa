@@ -6,64 +6,59 @@
     </div>
     <div class="mt-6 mb-12">
         <div class="grid sm:grid-cols-2 gap-6">
-            <div>
-                <label>{{ __('admin.election') }}</label>
-                <select wire:model="election">
-                    @foreach ($elections as $election)
-                    <option value="{{ $election->id }}">{{ json_decode($election->name)[0] }}</option>
+            <flux:field>
+                <flux:label>{{ __('admin.election') }}</flux:label>
+                <flux:select variant="listbox" searchable wire:model="election">
+                    @foreach($elections as $election)
+                        <flux:select.option value="{{ $election->id }}">{{ json_decode($election->name)[0] }}</flux:select.option>
                     @endforeach
-                </select>
-            </div>
-            <div>
-                <label>{{ __('admin.committee') }}</label>
-                <select wire:model="committee">
-                    @foreach ($committees as $committee)
-                    <option value="{{ $committee->id }}">{{ json_decode($committee->name)[0] }}</option>
+                </flux:select>
+            </flux:field>
+            <flux:field>
+                <flux:label>{{ __('admin.committee') }}</flux:label>
+                <flux:select variant="listbox" searchable wire:model="committee">
+                    @foreach($committees as $committee)
+                        <flux:select.option value="{{ $committee->id }}">{{ json_decode($committee->name)[0] }}</flux:select.option>
                     @endforeach
-                </select>
-            </div>
+                </flux:select>
+            </flux:field>
         </div>
-        <div class="mt-6 grid md:grid-cols-2 gap-6">
-            <div>
-                <label>{{ __('admin.questionsDE') }}</label>
-                <div class="grid grid-cols-[1fr_auto] gap-2">
-                    @foreach ($questionsDE as $index => $question)
-                    <input type="text" wire:model="questionsDE.{{ $index }}">
-                    <button wire:click="removeQuestion({{ $index }})" class="btn-neutral" title="{{ __('admin.removeQuestion') }}">
-                        <span aria-hidden="true">@svg('mdi-minus', 'size-5')</span>
-                        <span class="sr-only">{{ __('admin.removeQuestion') }}</span>
-                    </button>
+        <div class="mt-6">
+            <flux:table>
+                <flux:table.columns>
+                    <flux:table.column>{{ __('admin.questionsDE') }}</flux:table.column>
+                    <flux:table.column>{{ __('admin.questionsEN') }}</flux:table.column>
+                    <flux:table.column class="w-[3.4rem]"></flux:table.column>
+                </flux:table.columns>
+                <flux:table.rows>
+                    @foreach($questionsDE as $index => $question)
+                        <flux:table.row>
+                            <flux:table.cell>
+                                <flux:input type="text" wire:model="questionsDE.{{ $index }}" />
+                            </flux:table.cell>
+                            <flux:table.cell>
+                                <flux:input type="text" wire:model="questionsEN.{{ $index }}" />
+                            </flux:table.cell>
+                            <flux:table.cell>
+                                <flux:button icon="minus" wire:click="removeQuestion({{ $index }})" title="{{ __('admin.removeQuestion') }}" />
+                            </flux:table.cell>
+                        </flux:table.row>
                     @endforeach
-                </div>
-            </div>
-            <div>
-                <label>{{ __('admin.questionsEN') }}</label>
-                <div class="grid grid-cols-[1fr_auto] gap-2">
-                    @foreach ($questionsEN as $index => $question)
-                    <input type="text" wire:model="questionsEN.{{ $index }}">
-                    <button wire:click="removeQuestion({{ $index }})" class="btn-neutral" title="{{ __('admin.removeQuestion') }}">
-                        <span aria-hidden="true">@svg('mdi-minus', 'size-5')</span>
-                        <span class="sr-only">{{ __('admin.removeQuestion') }}</span>
-                    </button>
-                    @endforeach
-                </div>
-            </div>
-            <div>
-                <button type="button" wire:click="addQuestion" class="btn-neutral -mt-2">
-                    <span aria-hidden="true">@svg('mdi-plus', '-ml-0.5 size-5')</span>
+                </flux:table.rows>
+            </flux:table>
+            <div class="border-t border-zinc-200 dark:border-zinc-700 pt-3">
+                <flux:button icon="plus" type="button" wire:click="addQuestion">
                     {{ __('admin.addQuestion') }}
-                </button>
+                </flux:button>
             </div>
         </div>
     </div>
     <div class="mt-auto py-6 -mx-8 px-8 flex items-center justify-end gap-x-4 border-t border-zinc-200 dark:border-zinc-900 bg-zinc-100 dark:bg-zinc-800">
-        <a wire:navigate href="{{ url()->previous() }}" class="btn-neutral">
-            <span aria-hidden="true">@svg('mdi-cancel', '-ml-0.5 size-5')</span>
+        <flux:button icon="ban" wire:navigate href="{{ url()->previous() }}">
             {{ __('common.cancel') }}
-        </a>
-        <button wire:click="save" class="btn-primary">
-            <span aria-hidden="true">@svg('mdi-content-save', '-ml-0.5 size-5')</span>
+        </flux:button>
+        <flux:button variant="primary" icon="save" wire:click="save">
             {{ __('common.save') }}
-        </button>
+        </flux:button>
     </div>
 </div>

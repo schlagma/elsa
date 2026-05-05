@@ -6,48 +6,44 @@
     </div>
     <div class="mt-6 mb-12">
         <div class="grid sm:grid-cols-2 gap-6">
-            <div>
-                <label>{{ __('admin.election') }}</label>
-                <select wire:model="election">
-                    <option value="">{{ __('common.selectAnOption') }}</option>
-                    @foreach ($elections as $election)
-                    <option value="{{ $election->id }}">{{ json_decode($election->name)[0] }}</option>
+            <flux:field>
+                <flux:label>{{ __('admin.election') }}</flux:label>
+                <flux:select variant="listbox" searchable wire:model="election" placeholder="{{ __('common.selectAnOption') }}">
+                    @foreach($elections as $election)
+                        <flux:select.option value="{{ $election->id }}">{{ json_decode($election->name)[0] }}</flux:select.option>
                     @endforeach
-                </select>
-            </div>
-            <div>
-                <label>{{ __('admin.committee') }}</label>
-                <select wire:model="committee">
-                    <option value="">{{ __('common.selectAnOption') }}</option>
-                    @foreach ($committees as $committee)
-                    <option value="{{ $committee->id }}">{{ json_decode($committee->name)[0] }}</option>
+                </flux:select>
+            </flux:field>
+            <flux:field>
+                <flux:label>{{ __('admin.committee') }}</flux:label>
+                <flux:select variant="listbox" searchable wire:model="committee" placeholder="{{ __('common.selectAnOption') }}">
+                    @foreach($committees as $committee)
+                        <flux:select.option value="{{ $committee->id }}">{{ json_decode($committee->name)[0] }}</flux:select.option>
                     @endforeach
-                </select>
-            </div>
+                </flux:select>
+            </flux:field>
         </div>
         <div class="mt-6 grid sm:grid-cols-2 gap-6">
-            <div>
-                <label>{{ __('admin.eligibleVoters') }}</label>
-                <input type="number" wire:model="eligibleVoters">
-            </div>
-            <div>
-                <label>{{ __('admin.ballotsCast') }}</label>
-                <input type="number" wire:model="ballotsCast">
-            </div>
-            <div>
-                <label>{{ __('admin.ballotsInvalid') }}</label>
-                <input type="number" wire:model="ballotsInvalid">
-            </div>
+            <flux:field>
+                <flux:label>{{ __('admin.eligibleVoters') }}</flux:label>
+                <flux:input type="number" wire:model="eligibleVoters" />
+            </flux:field>
+            <flux:field>
+                <flux:label>{{ __('admin.ballotsCast') }}</flux:label>
+                <flux:input type="number" wire:model="ballotsCast" />
+            </flux:field>
+            <flux:field>
+                <flux:label>{{ __('admin.ballotsInvalid') }}</flux:label>
+                <flux:input type="number" wire:model="ballotsInvalid" />
+            </flux:field>
         </div>
     </div>
     <div class="mt-auto py-6 -mx-8 px-8 flex items-center justify-end gap-x-4 border-t border-zinc-200 dark:border-zinc-900 bg-zinc-100 dark:bg-zinc-800">
-        <a wire:navigate href="{{ url()->previous() }}" class="btn-neutral">
-            <span aria-hidden="true">@svg('mdi-cancel', '-ml-0.5 size-5')</span>
+        <flux:button icon="ban" wire:navigate href="{{ url()->previous() }}">
             {{ __('common.cancel') }}
-        </a>
-        <button wire:click="save" class="btn-primary">
-            <span aria-hidden="true">@svg('mdi-content-save', '-ml-0.5 size-5')</span>
+        </flux:button>
+        <flux:button variant="primary" icon="save" wire:click="save">
             {{ __('common.save') }}
-        </button>
+        </flux:button>
     </div>
 </div>

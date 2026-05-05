@@ -2,10 +2,10 @@
 
 namespace App\Livewire\Admin\Elections;
 
+use Flux\Flux;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
-use Masmerise\Toaster\Toaster;
 
 #[Layout('layouts.app')]
 class ElectionsAdd extends Component
@@ -50,7 +50,7 @@ class ElectionsAdd extends Component
             'candidacy_edit_end' => $this->candidacyEditEnd,
         ]);
 
-        Toaster::success('admin.added');
+        Flux::toast(variant: 'success', text: __('admin.added'));
         $this->redirect('/admin/elections', navigate: true);
     }
 }

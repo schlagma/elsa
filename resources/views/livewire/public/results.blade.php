@@ -1,14 +1,17 @@
 <div class="p-6 sm:p-8 dark:text-white">
     <div class="grid grid-cols-[1fr_auto] gap-x-4">
-        <div>
-            <p class="mb-2 dark:text-white">
-                @if(app()->getLocale() == "en")
-                    {{ $electionName[1] }} &rarr;
-                @else
-                    {{ $electionName[0] }} &rarr;
-                @endif
-                {{ __('messages.results') }}
-            </p>
+        <div class="space-y-2">
+            <flux:breadcrumbs>
+                <flux:breadcrumbs.item>
+                    @if(app()->getLocale() == "en")
+                        {{ $electionName[1] }}
+                    @else
+                        {{ $electionName[0] }}
+                    @endif
+                </flux:breadcrumbs.item>
+                <flux:breadcrumbs.item>{{ __('messages.results') }}</flux:breadcrumbs.item>
+            </flux:breadcrumbs>
+
             @if(app()->getLocale() == "en")
                 <h1 class="mb-6! dark:text-white">{{ json_decode($committee->name)[1] }}</h1>
             @else
@@ -16,15 +19,12 @@
             @endif
         </div>
         <div class="pt-4">
-            <a
+            <flux:button
                 wire:navigate
                 href="{{ route('public-committee', ['id' => $committeeID, 'election' => $electionID]) }}"
                 title="{{ __('messages.info_on_this_committee')}}"
-                class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-white"
-            >
-                <span aria-hidden="true">@svg('mdi-information', 'size-6')</span>
-                <span class="sr-only">{{ __('messages.info_on_this_committee')}}</span>
-            </a>
+                icon="info"
+            />
         </div>
     </div>
 

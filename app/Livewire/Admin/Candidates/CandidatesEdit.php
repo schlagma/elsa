@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin\Candidates;
 
+use Flux\Flux;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -9,7 +10,6 @@ use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
-use Masmerise\Toaster\Toaster;
 
 #[Layout('layouts.app')]
 class CandidatesEdit extends Component
@@ -27,7 +27,7 @@ class CandidatesEdit extends Component
     public ?int $list = null;
     public array $answersDE = [];
     public array $answersEN = [];
-    public ?int $votes;
+    public ?int $votes = null;
     public bool $resigned;
     public $candidacyReceived;
     public bool $approved;
@@ -128,7 +128,7 @@ class CandidatesEdit extends Component
             'approved' => $this->approved,
         ]);
 
-        Toaster::success('admin.updated');
+        Flux::toast(variant: 'success', text: __('admin.updated'));
     }
 
     public function saveImage()
@@ -155,7 +155,7 @@ class CandidatesEdit extends Component
 
         $this->pictureUrl = Storage::disk('local')->temporaryUrl('candidates/' . $imgFileName, now()->addMinutes(5));
 
-        Toaster::success('admin.pictureAdded');
+        Flux::toast(variant: 'success', text: __('admin.pictureAdded'));
     }
 
     public function removeImage()
@@ -167,6 +167,6 @@ class CandidatesEdit extends Component
 
         $this->pictureUrl = null;
 
-        Toaster::success('admin.pictureRemoved');
+        Flux::toast(variant: 'success', text: __('admin.pictureRemoved'));
     }
 }

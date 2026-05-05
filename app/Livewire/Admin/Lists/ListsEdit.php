@@ -2,12 +2,12 @@
 
 namespace App\Livewire\Admin\Lists;
 
+use Flux\Flux;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
-use Masmerise\Toaster\Toaster;
 
 #[Layout('layouts.app')]
 class ListsEdit extends Component
@@ -71,6 +71,6 @@ class ListsEdit extends Component
             'seats_deputy' => $this->seatsDeputy,
         ]);
         
-        Toaster::success('admin.updated');
+        Flux::toast(variant: 'success', text: __('admin.updated'));
     }
 }

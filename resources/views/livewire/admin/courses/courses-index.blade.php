@@ -4,67 +4,49 @@
             <h1 class="text-2xl font-bold leading-6 text-zinc-800 dark:text-white">{{ __('admin.courses') }}</h1>
         </div>
         <div class="mt-4 xl:ml-16 xl:mt-0 flex flex-col sm:flex-row whitespace-nowrap">
-            <a wire:navigate href="{{ route('admin-courses-add') }}" type="button" class="btn-primary">
-                <span aria-hidden="true">@svg('mdi-plus', '-ml-0.5 size-5')</span>
+            <flux:button variant="primary" icon="plus" wire:navigate href="{{ route('admin-courses-add') }}">
                 {{ __('admin.addCourse') }}
-            </a>
+            </flux:button>
         </div>
     </div>
     <div class="mt-6">
-        <div class="-mx-6 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                @if (count($courses) > 0)
-                <div class="overflow-hidden shadow-xs ring-1 ring-black/5 sm:rounded-lg">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th scope="col" class="min-w-56">{{ __('admin.name') }}</th>
-                                <th scope="col"><span class="sr-only">{{ __('admin.options') }}</span></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($courses as $course)
-                            <tr>
-                                <td>@if(app()->getLocale() == "de"){{ json_decode($course->name)[0] }}@elseif(app()->getLocale() == "en"){{ json_decode($course->name)[1] }}@endif</td>
-                                <td class="whitespace-nowrap text-right">
-                                    <div class="relative inline-block text-left" x-data="{ dropdown: false }">                                            
-                                        <div>
-                                            <button class="relative top-[2px] rounded-md px-2 py-1 -my-1 hover:bg-zinc-200 dark:hover:bg-zinc-600 focus:bg-zinc-200 dark:focus:bg-zinc-600 active:bg-zinc-200 dark:active:bg-zinc-600 cursor-pointer" @click="dropdown = true">
-                                                <span aria-hidden="true">@svg('mdi-dots-vertical', 'text-zinc-800 dark:text-white size-5')</span>
-                                                <span class="sr-only">Optionen</span>
-                                            </button>
-                                        </div>
+            @if(count($courses) > 0)
+                <flux:table>
+                    <flux:table.columns>
+                        <flux:table.column class="min-w-56">{{ __('admin.name') }}</flux:table.column>
+                        <flux:table.column><span class="sr-only">{{ __('admin.options') }}</span></flux:table.column>
+                    </flux:table.columns>
+                    <flux:table.rows>
+                        @foreach($courses as $course)
+                            <flux:table.row>
+                                <flux:table.cell>@if(app()->getLocale() == "de"){{ json_decode($course->name)[0] }}@elseif(app()->getLocale() == "en"){{ json_decode($course->name)[1] }}@endif</flux:table.cell>
+                                <flux:table.cell class="whitespace-nowrap text-right">
+                                    <flux:dropdown>
+                                        <flux:button size="sm" icon="ellipsis-vertical" />
+                                        <flux:menu>
+                                            <flux:menu.item
+                                                wire:navigate
+                                                href="{{ route('admin-courses-edit', ['id' => $course->id]) }}"
+                                                icon="pencil"
+                                            >
+                                                {{ __('common.edit') }}
+                                            </flux:menu.item>
+                                        </flux:menu>
+                                    </flux:dropdown>
+                                </flux:table.cell>
+                            </flux:table.row>
+                        @endforeach
+                    </flux:table.rows>
+                </flux:table>
 
-                                        @if ($loop->index < count($courses) - 2)
-                                        <div x-show="dropdown" @click.outside="dropdown = false" class="absolute right-0 z-10 mt-1 origin-top-right divide-y divide-zinc-200 dark:divide-zinc-700 rounded-md bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-black/5 dark:ring-white/5">
-                                        @else
-                                        <div x-show="dropdown" @click.outside="dropdown = false" class="absolute right-0 bottom-8 z-10 mt-1 origin-top-right divide-y divide-zinc-200 dark:divide-zinc-700 rounded-md bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-black/5 dark:ring-white/5">
-                                        @endif
-                                            <div class="py-1">
-                                                <a wire:navigate href="{{ route('admin-courses-edit', ['id' => $course->id]) }}" class="text-zinc-800 dark:text-white group flex items-center px-4 py-2 border-0 hover:bg-zinc-200 dark:hover:bg-zinc-700 font-normal!">
-                                                    <span aria-hidden="true">@svg('mdi-file-edit', 'mr-3 size-5 text-zinc-500 dark:text-zinc-300')</span>
-                                                    {{ __('common.edit') }}
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                <div class="pagination">
+                    <flux:pagination :paginator="$courses" />
                 </div>
-                @else
+            @else
                 <div>
                     <p class="text-zinc-800 dark:text-white">{{ __('admin.noResults') }}</p>
                 </div>
-                @endif
-            </div>
+            @endif
         </div>
-        @if(count($courses) > 0)
-        <div class="mt-6">
-            {{ $courses->onEachSide(1)->links() }}
-        </div>
-        @endif
     </div>
 </div>

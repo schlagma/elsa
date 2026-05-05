@@ -33,7 +33,7 @@
                 </div>
                 <div>
                     <div class="text-center">
-                        <h3 class="text-xl font-bold text-zinc-800 dark:text-white">ELSA <span class="font-normal ml-1"> 1.0.0-alpha</span></h3>
+                        <h3 class="text-xl font-bold text-zinc-800 dark:text-white">ELSA <span class="font-normal ml-1"> 1.0.0</span></h3>
                         <div class="mt-2">
                             <p class="text-zinc-800 dark:text-white hyphens-none">Elektronisches System für Abstimmungen</p>
                         </div>

@@ -1,22 +1,54 @@
-<div class="flex h-16 shrink-0 items-center gap-x-4 border-b border-zinc-900 bg-zinc-800 pr-4 shadow-xs shadow-black/30 sm:gap-x-6 sm:pr-6 lg:pr-8 z-10 print:hidden">
-    <a wire:navigate href="/" class="flex h-full items-center border-b-0 sm:w-[18rem] px-6">
-        @if (file_exists(public_path('logo.svg')) && file_exists(public_path('logo-small.svg')))
-            <img class="h-8 w-auto hidden sm:inline" src="{{ asset('logo.svg') }}" alt="{{ config('app.name') }}">
-            <img class="h-8 w-auto sm:hidden" src="{{ asset('logo-small.svg') }}" alt="{{ config('app.name') }}">
-        @else
-            <span class="mx-auto text-white text-xl">ELSA</span>
-        @endif
-    </a>
-    
-    <div class="flex items-center gap-x-6 ml-auto">
-        <livewire:dropdown.language-switch />
-        <button
-            class="p-1 text-zinc-300 hover:text-zinc-100 cursor-pointer"
-            title="{{ __('common.about') }} GISELA &hellip;"
-            @click="dialogInfo = true"
-        >
-            <span aria-hidden="true">@svg('mdi-information', 'size-6')</span>
-            <span class="sr-only">{{ __('common.about') }} GISELA &hellip;</span> 
-        </button>
+<flux:navbar class="flex h-[4rem] shrink-0 items-center gap-x-4 border-b border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 px-4 sm:gap-x-6 sm:px-6 lg:px-8 z-10 print:hidden">
+    <div class="hidden md:inline w-[18rem]! -ml-6 lg:-ml-8">
+        <flux:sidebar.header class="flex h-[4rem] shrink-0 items-center bg-zinc-100 dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-700">
+            <a wire:navigate href="/" class="h-full flex flex-1 items-center justify-start lg:justify-center px-6">
+                <span class="text-zinc-800 dark:text-white text-xl font-semibold">{{ config('app.name') }}</span>
+            </a>
+        </flux:sidebar.header>
     </div>
-</div>
+        
+    <div class="flex items-center gap-x-4 ml-auto">
+        <livewire:dropdown.language-switch />
+
+        @include('info')
+
+        <flux:dropdown>
+            @auth
+                <flux:profile :chevron="false" avatar:name="{{ auth()->user()->name }}" />
+            @else
+                <flux:profile :chevron="false" avatar:name="?" />
+            @endauth
+
+            <flux:navmenu class="w-64">
+                @auth
+                    <div class="px-2 py-1.5" role="none">
+                        <p class="truncate text-zinc-800 dark:text-white font-semibold" role="none">{{ auth()->user()->name }}</p>
+                        @can('admin', Auth::user())
+                            <p class="text-sm text-zinc-500 dark:text-zinc-400" role="none">{{ __('roles.admin') }}</p>
+                        @else
+                            <p class="text-sm text-zinc-500 dark:text-zinc-400" role="none">{{ __('roles.user') }}</p>
+                        @endcan
+                    </div>
+                    <flux:navmenu.separator />
+                @endauth
+
+                @guest
+                    <flux:navmenu.item
+                        icon="log-in"
+                        href="/auth/login"
+                    >
+                        {{ __('common.login') }}
+                    </flux:navmenu.item>
+                @endguest
+                @auth
+                    <flux:navmenu.item
+                        icon="log-out"
+                        href="/auth/logout"
+                    >
+                        {{ __('common.logout') }}
+                    </flux:navmenu.item>
+                @endauth
+            </flux:navmenu>
+        </flux:dropdown>
+    </div>
+</flux:navbar>

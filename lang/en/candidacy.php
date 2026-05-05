@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'candidacyTitle' => 'Candidacy',
+    'candidacy' => 'Candidacy',
     'candidacySubmitted' => 'Candidacy submitted',
     'committee' => 'Committee',
     'committeeHint' => 'For productive participation in university committee meetings, sufficient knowledge of the German language is essential.',
@@ -19,4 +19,5 @@ return [
     'noCandidacies' => 'No candidacies available',
     'personAndStudies' => 'Person and studies',
     'send' => 'Send',
+    'submitCandidacy' => 'Submit Candidacy',
 ];

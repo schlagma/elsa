@@ -2,11 +2,11 @@
 
 namespace App\Livewire\Admin\Candidates;
 
+use Flux\Flux;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
-use Masmerise\Toaster\Toaster;
 
 #[Layout('layouts.app')]
 class CandidatesAdd extends Component
@@ -97,7 +97,7 @@ class CandidatesAdd extends Component
             }
         }
 
-        Toaster::success('admin.added');
+        Flux::toast(variant: 'success', text: __('admin.added'));
         $this->redirect('/admin/candidates', navigate: true);
     }
 }

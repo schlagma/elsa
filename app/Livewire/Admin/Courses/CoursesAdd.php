@@ -2,10 +2,10 @@
 
 namespace App\Livewire\Admin\Courses;
 
+use Flux\Flux;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
-use Masmerise\Toaster\Toaster;
 
 #[Layout('layouts.app')]
 class CoursesAdd extends Component
@@ -36,7 +36,7 @@ class CoursesAdd extends Component
             'active' => $this->active,
         ]);
 
-        Toaster::success('admin.added');
+        Flux::toast(variant: 'success', text: __('admin.added'));
         $this->redirect('/admin/courses', navigate: true);
     }
 }

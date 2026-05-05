@@ -1,18 +1,50 @@
-<div class="flex h-16 shrink-0 items-center justify-items-end gap-x-4 border-b border-zinc-900 bg-zinc-800 px-4 shadow-xs shadow-black/20 sm:px-6 lg:px-8">
-    <button type="button" class="-m-2.5 p-2.5 text-zinc-700 lg:hidden" @click="mobileMenu = true">
-        <span class="sr-only">Open sidebar</span>
-        @svg('mdi-menu', 'size-6 text-zinc-300 hover:text-zinc-100')
-    </button>
+<flux:navbar class="flex h-[4rem] shrink-0 items-center gap-x-4 border-b border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 px-4 sm:gap-x-6 sm:px-6 lg:px-8 z-10 print:hidden">
+    <flux:sidebar.toggle class="lg:hidden" icon="menu" />
+    <div class="hidden md:inline">
+    </div>
+    <div class="flex items-center gap-x-4 ml-auto">
+        <livewire:dropdown.election-switch />
+        <livewire:dropdown.language-switch />
+        
+        @include('info')
 
-    <livewire:dropdown.election-switch />
-    <livewire:dropdown.language-switch />
+        <flux:dropdown>
+            @auth
+                <flux:profile :chevron="false" avatar:name="{{ auth()->user()->name }}" />
+            @else
+                <flux:profile :chevron="false" avatar:name="?" />
+            @endauth
 
-    <button
-        class="p-1 text-zinc-300 hover:text-zinc-100 cursor-pointer"
-        title="{{ __('common.about') }} ELSA &hellip;"
-        @click="dialogInfo = true"
-    >
-        <span aria-hidden="true">@svg('mdi-information', 'size-6')</span>
-        <span class="sr-only">{{ __('common.about') }} ELSA &hellip;</span> 
-    </button>
-</div>
+            <flux:navmenu class="w-64">
+                @auth
+                    <div class="px-2 py-1.5" role="none">
+                        <p class="truncate text-zinc-800 dark:text-white font-semibold" role="none">{{ auth()->user()->name }}</p>
+                        @can('admin', Auth::user())
+                            <p class="text-sm text-zinc-500 dark:text-zinc-400" role="none">{{ __('roles.admin') }}</p>
+                        @else
+                            <p class="text-sm text-zinc-500 dark:text-zinc-400" role="none">{{ __('roles.user') }}</p>
+                        @endcan
+                    </div>
+                    <flux:navmenu.separator />
+                @endauth
+
+                @guest
+                    <flux:navmenu.item
+                        icon="log-in"
+                        href="/auth/login"
+                    >
+                        {{ __('common.login') }}
+                    </flux:navmenu.item>
+                @endguest
+                @auth
+                    <flux:navmenu.item
+                        icon="log-out"
+                        href="/auth/logout"
+                    >
+                        {{ __('common.logout') }}
+                    </flux:navmenu.item>
+                @endauth
+            </flux:navmenu>
+        </flux:dropdown>
+    </div>
+</flux:navbar>

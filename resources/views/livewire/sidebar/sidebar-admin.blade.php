@@ -1,39 +1,92 @@
 <div>
-    <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
-    <div x-show="mobileMenu" class="relative z-50 lg:hidden" role="dialog" aria-modal="true">
-        <div x-show="mobileMenu"
-        x-transition:enter="transition-opacity ease-linear duration-300"
-        x-transition:enter-start="opacity-0"
-        x-transition:enter-end="opacity-100"
-        x-transition:leave="transition-opacity ease-linear duration-300"
-        x-transition:leave-start="opacity-100"
-        x-transition:leave-end="opacity-0"
-        class="fixed inset-0 bg-zinc-900/80"></div>
-        <div class="fixed inset-0 flex">
-            <div x-show="mobileMenu"
-            x-transition:enter="transition ease-in-out duration-300 transform"
-            x-transition:enter-start="-translate-x-full"
-            x-transition:enter-end="translate-x-0"
-            x-transition:leave="transition ease-in-out duration-300 transform"
-            x-transition:leave-start="translate-x-0"
-            x-transition:leave-end="-translate-x-full"
-            class="relative mr-16 flex w-full max-w-xs flex-1"
-            @click.outside="mobileMenu = false">
-                <div class="absolute left-full top-0 flex w-16 justify-center pt-5">
-                    <button type="button" class="-m-2.5 p-2.5" @click="mobileMenu = false">
-                        <span class="sr-only">Close sidebar</span>
-                        <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
-                <livewire:sidebar.sidebar-admin-content />
-            </div>
-        </div>
-    </div>
+    <flux:sidebar collapsible="mobile" class="w-[18rem]! p-0! flex flex-col gap-0! h-full grow bg-zinc-100 dark:bg-zinc-800">
+        <flux:sidebar.header class="flex h-[4rem] shrink-0 items-center bg-zinc-100 dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-700 border-r lg:border-r-0 border-r-zinc-300  dark:border-r-zinc-700 z-10">
+            <a wire:navigate href="/" class="h-full flex flex-1 items-center justify-start lg:justify-center px-6">
+                <span class="text-zinc-800 dark:text-white text-xl font-semibold">{{ config('app.name') }}</span>
+            </a>
+            <flux:sidebar.collapse class="lg:hidden" />
+        </flux:sidebar.header>
 
-    <!-- Static sidebar for desktop -->
-    <div class="hidden lg:inline">
-        <livewire:sidebar.sidebar-admin-content />
-    </div>
+        <div class="grow overflow-y-auto border-r border-zinc-200 dark:border-zinc-700">
+            <flux:sidebar.nav class="px-6 py-4">
+                <flux:sidebar.item
+                    :current="str_contains(Route::getFacadeRoot()->current()->uri(), 'admin/elections')"
+                    wire:navigate
+                    href="{{ route('admin-elections-index') }}"
+                    icon="vote"
+                >
+                    {{ __('admin.elections') }}
+                </flux:sidebar.item>
+                <flux:sidebar.item
+                    :current="str_contains(Route::getFacadeRoot()->current()->uri(), 'admin/committees')"
+                    wire:navigate
+                    href="{{ route('admin-committees-index') }}"
+                    icon="users"
+                >
+                    {{ __('admin.committees') }}
+                </flux:sidebar.item>
+                <flux:sidebar.item
+                    :current="str_contains(Route::getFacadeRoot()->current()->uri(), 'admin/lists')"
+                    wire:navigate
+                    href="{{ route('admin-lists-index') }}"
+                    icon="list"
+                >
+                    {{ __('admin.lists') }}
+                </flux:sidebar.item>
+                <flux:sidebar.item
+                    :current="str_contains(Route::getFacadeRoot()->current()->uri(), 'admin/courses')"
+                    wire:navigate
+                    href="{{ route('admin-courses-index') }}"
+                    icon="graduation-cap"
+                >
+                    {{ __('admin.courses') }}
+                </flux:sidebar.item>
+                <flux:sidebar.item
+                    :current="str_contains(Route::getFacadeRoot()->current()->uri(), 'admin/faculties')"
+                    wire:navigate
+                    href="{{ route('admin-faculties-index') }}"
+                    icon="building-2"
+                >
+                    {{ __('admin.faculties') }}
+                </flux:sidebar.item>
+                <flux:sidebar.item
+                    :current="str_contains(Route::getFacadeRoot()->current()->uri(), 'admin/questions')"
+                    wire:navigate
+                    href="{{ route('admin-questions-index') }}"
+                    icon="message-circle-question-mark"
+                >
+                    {{ __('admin.questions') }}
+                </flux:sidebar.item>
+                <flux:sidebar.item
+                    :current="str_contains(Route::getFacadeRoot()->current()->uri(), 'admin/candidates')"
+                    wire:navigate
+                    href="{{ route('admin-candidates-index') }}"
+                    icon="user"
+                >
+                    {{ __('admin.candidates') }}
+                </flux:sidebar.item>
+                <flux:sidebar.item
+                    :current="str_contains(Route::getFacadeRoot()->current()->uri(), 'admin/results')"
+                    wire:navigate
+                    href="{{ route('admin-results-index') }}"
+                    icon="clipboard-check"
+                >
+                    {{ __('admin.results') }}
+                </flux:sidebar.item>
+            </flux:sidebar.nav>
+
+            @can('admin')
+                <flux:sidebar.nav class="px-6 py-4">
+                    <flux:sidebar.item
+                        :current="str_contains(Route::getFacadeRoot()->current()->uri(), 'admin/legal-texts')"
+                        wire:navigate
+                        href="{{ route('admin-legal-texts-edit') }}"
+                        icon="scale"
+                    >
+                        {{ __('admin.legalTexts') }}
+                    </flux:sidebar.item>
+                </flux:sidebar.nav>
+            @endcan
+        </div>
+    </flux:sidebar>
 </div>

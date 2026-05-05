@@ -6,38 +6,36 @@
     </div>
     <div class="mt-6 mb-12">
         <div class="grid sm:grid-cols-2 gap-6">
-            <div>
-                <label>{{ __('admin.nameDE') }}</label>
-                <input type="text" wire:model="nameDE" class="w-full">
-            </div>
-            <div>
-                <label>{{ __('admin.nameEN') }}</label>
-                <input type="text" wire:model="nameEN" class="w-full">
-            </div>
+            <flux:field>
+                <flux:label>{{ __('admin.nameDE') }}</flux:label>
+                <flux:input type="text" wire:model="nameDE" class="w-full" />
+            </flux:field>
+            <flux:field>
+                <flux:label>{{ __('admin.nameEN') }}</flux:label>
+                <flux:input type="text" wire:model="nameEN" class="w-full" />
+            </flux:field>
         </div>
         <div class="mt-6 grid sm:grid-cols-2 gap-6">
-            <div>
-                <label>{{ __('admin.elections') }}</label>
-                <select wire:model="courseElections" multiple>
-                    @foreach ($elections as $election)
-                        <option value="{{ $election->id }}">{{ json_decode($election->name)[0] }}</option>
+            <flux:field>
+                <flux:label>{{ __('admin.elections') }}</flux:label>
+                <flux:pillbox wire:model="courseElections" multiple searchable>
+                    @foreach($elections as $election)
+                        <flux:pillbox.option value="{{ $election->id }}">{{ json_decode($election->name)[0] }}</flux:pillbox.option>
                     @endforeach
-                </select>
-            </div>
-            <div>
-                <label for="checkboxActive">{{ __('admin.active') }}</label>
-                <input id="checkboxActive" type="checkbox" wire:model="active">
-            </div>
+                </flux:pillbox>
+            </flux:field>
+            <flux:field>
+                <flux:label>{{ __('admin.active') }}</flux:label>
+                <flux:checkbox wire:model="active" />
+            </flux:field>
         </div>
     </div>
     <div class="mt-auto py-6 -mx-8 px-8 flex items-center justify-end gap-x-4 border-t border-zinc-200 dark:border-zinc-900 bg-zinc-100 dark:bg-zinc-800">
-        <a wire:navigate href="{{ url()->previous() }}" class="btn-neutral">
-            <span aria-hidden="true">@svg('mdi-cancel', '-ml-0.5 size-5')</span>
+        <flux:button icon="ban" wire:navigate href="{{ url()->previous() }}">
             {{ __('common.cancel') }}
-        </a>
-        <button wire:click="save" class="btn-primary">
-            <span aria-hidden="true">@svg('mdi-content-save', '-ml-0.5 size-5')</span>
+        </flux:button>
+        <flux:button variant="primary" icon="save" wire:click="save">
             {{ __('common.save') }}
-        </button>
+        </flux:button>
     </div>
 </div>

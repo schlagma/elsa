@@ -14,7 +14,6 @@
         "livewire/flux": "^2.14",
         "livewire/flux-pro": "^2.14",
         "livewire/livewire": "^3.6",
-        "masmerise/livewire-toaster": "^2.8",
         "outhebox/blade-flags": "^1.5",
         "postare/blade-mdi": "^1.1",
         "socialiteproviders/keycloak": "^5.3"

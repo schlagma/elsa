@@ -2,10 +2,10 @@
 
 namespace App\Livewire\Admin\Lists;
 
+use Flux\Flux;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
-use Masmerise\Toaster\Toaster;
 
 #[Layout('layouts.app')]
 class ListsAdd extends Component
@@ -51,7 +51,7 @@ class ListsAdd extends Component
             'seats_deputy' => $this->seatsDeputy,
         ]);
         
-        Toaster::success('admin.added');
+        Flux::toast(variant: 'success', text: __('admin.added'));
         $this->redirect('/admin/lists', navigate: true);
     }
 }

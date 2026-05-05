@@ -2,12 +2,12 @@
 
 namespace App\Livewire\Admin\Faculties;
 
+use Flux\Flux;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
-use Masmerise\Toaster\Toaster;
 
 #[Layout('layouts.app')]
 class FacultiesEdit extends Component
@@ -53,6 +53,6 @@ class FacultiesEdit extends Component
             'active' => $this->active,
         ]);
         
-        Toaster::success('admin.updated');
+        Flux::toast(variant: 'success', text: __('admin.updated'));
     }
 }

@@ -27,6 +27,7 @@ class User extends Authenticatable
         'keycloak_id',
         'keycloak_token',
         'keycloak_refresh_token',
+        'keycloak_id_token',
     ];
 
     /**

@@ -6,72 +6,70 @@
     </div>
     <div class="mt-6 mb-12">
         <div class="grid sm:grid-cols-2 gap-6">
-            <div>
-                <label>{{ __('admin.nameDE') }}</label>
-                <input type="text" wire:model="nameDE" class="w-full">
-            </div>
-            <div>
-                <label>{{ __('admin.nameEN') }}</label>
-                <input type="text" wire:model="nameEN" class="w-full">
-            </div>
+            <flux:field>
+                <flux:label>{{ __('admin.nameDE') }}</flux:label>
+                <flux:input type="text" wire:model="nameDE" class="w-full" />
+            </flux:field>
+            <flux:field>
+                <flux:label>{{ __('admin.nameEN') }}</flux:label>
+                <flux:input type="text" wire:model="nameEN" class="w-full" />
+            </flux:field>
         </div>
         <div class="mt-6 grid sm:grid-cols-2 gap-6">
-            <div>
-                <label>{{ __('admin.infotextDE') }}</label>
-                <textarea wire:model="infotextDE" class="w-full"></textarea>
-            </div>
-            <div>
-                <label>{{ __('admin.infotextEN') }}</label>
-                <textarea wire:model="infotextEN" class="w-full"></textarea>
-            </div>
+            <flux:field>
+                <flux:label>{{ __('admin.infotextDE') }}</flux:label>
+                <flux:textarea wire:model="infotextDE" class="w-full font-mono" />
+            </flux:field>
+            <flux:field>
+                <flux:label>{{ __('admin.infotextEN') }}</flux:label>
+                <flux:textarea wire:model="infotextEN" class="w-full font-mono" />
+            </flux:field>
         </div>
         <div class="mt-6 grid sm:grid-cols-2 gap-6">
-            <div>
-                <label>{{ __('admin.election') }}</label>
-                <select wire:model="election">
-                    @foreach ($elections as $election)
-                    <option value="{{ $election->id }}">
-                        @if(app()->getLocale() == "de")
-                            {{ json_decode($election->name)[0] }}
-                        @elseif(app()->getLocale() == "en")
-                            {{ json_decode($election->name)[1] }}
-                        @endif
-                    </option>
+            <flux:field>
+                <flux:label>{{ __('admin.election') }}</flux:label>
+                <flux:select variant="listbox" searchable wire:model="election">
+                    @foreach($elections as $election)
+                        <flux:select.option value="{{ $election->id }}">
+                            @if(app()->getLocale() == "de")
+                                {{ json_decode($election->name)[0] }}
+                            @elseif(app()->getLocale() == "en")
+                                {{ json_decode($election->name)[1] }}
+                            @endif
+                        </flux:select.option>
                     @endforeach
-                </select>
-            </div>
-            <div>
-                <label>{{ __('admin.committee') }}</label>
-                <select wire:model="committee">
-                    @foreach ($committees as $committee)
-                    <option value="{{ $committee->id }}">
-                        @if(app()->getLocale() == "de")
-                            {{ json_decode($committee->name)[0] }}
-                        @elseif(app()->getLocale() == "en")
-                            {{ json_decode($committee->name)[1] }}
-                        @endif
-                    </option>
+                </flux:select>
+            </flux:field>
+            <flux:field>
+                <flux:label>{{ __('admin.committee') }}</flux:label>
+                <flux:select variant="listbox" searchable wire:model="committee">
+                    @foreach($committees as $committee)
+                        <flux:select.option value="{{ $committee->id }}">
+                            @if(app()->getLocale() == "de")
+                                {{ json_decode($committee->name)[0] }}
+                            @elseif(app()->getLocale() == "en")
+                                {{ json_decode($committee->name)[1] }}
+                            @endif
+                        </flux:select.option>
                     @endforeach
-                </select>
-            </div>
-            <div>
-                <label>{{ __('admin.seats') }}</label>
-                <input type="number" wire:model="seats" class="w-full">
-            </div>
-            <div>
-                <label>{{ __('admin.seatsDeputy') }}</label>
-                <input type="number" wire:model="seatsDeputy" class="w-full">
-            </div>
+                </flux:select>
+            </flux:field>
+            <flux:field>
+                <flux:label>{{ __('admin.seats') }}</flux:label>
+                <flux:input type="number" wire:model="seats" class="w-full" />
+            </flux:field>
+            <flux:field>
+                <flux:label>{{ __('admin.seatsDeputy') }}</flux:label>
+                <flux:input type="number" wire:model="seatsDeputy" class="w-full" />
+            </flux:field>
         </div>
     </div>
     <div class="mt-auto py-6 -mx-8 px-8 flex items-center justify-end gap-x-4 border-t border-zinc-200 dark:border-zinc-900 bg-zinc-100 dark:bg-zinc-800">
-        <a wire:navigate href="{{ url()->previous() }}" class="btn-neutral">
-            <span aria-hidden="true">@svg('mdi-cancel', '-ml-0.5 size-5')</span>
+        <flux:button icon="ban" wire:navigate href="{{ url()->previous() }}">
             {{ __('common.cancel') }}
-        </a>
-        <button wire:click="save" class="btn-primary">
-            <span aria-hidden="true">@svg('mdi-content-save', '-ml-0.5 size-5')</span>
+        </flux:button>
+        <flux:button variant="primary" icon="save" wire:click="save">
             {{ __('common.save') }}
-        </button>
+        </flux:button>
     </div>
 </div>
