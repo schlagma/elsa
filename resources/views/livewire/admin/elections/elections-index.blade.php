@@ -27,10 +27,40 @@
                 <flux:table.rows>
                     @foreach($elections as $election)
                         <flux:table.row>
-                            <flux:table.cell>@if(app()->getLocale() == "de"){{ json_decode($election->name)[0] }}@elseif(app()->getLocale() == "en"){{ json_decode($election->name)[1] }}@endif</flux:table.cell>
-                            <flux:table.cell>@if($election->candidates_exist)<span aria-hidden="true">@svg('mdi-check', 'size-6 text-green-600 dark:text-green-500')</span><span class="sr-only">{{ __('admin.yes') }}</span>@else<span aria-hidden="true">@svg('mdi-close', 'size-6 text-red-600 dark:text-red-300')</span><span class="sr-only">{{ __('admin.no') }}</span>@endif</flux:table.cell>
-                            <flux:table.cell>@if($election->all_votes_counted)<span aria-hidden="true">@svg('mdi-check', 'size-6 text-green-600 dark:text-green-500')</span><span class="sr-only">{{ __('admin.yes') }}</span>@else<span aria-hidden="true">@svg('mdi-close', 'size-6 text-red-600 dark:text-red-300')</span><span class="sr-only">{{ __('admin.no') }}</span>@endif</flux:table.cell>
-                            <flux:table.cell>@if($election->public)<span aria-hidden="true">@svg('mdi-check', 'size-6 text-green-600 dark:text-green-500')</span><span class="sr-only">{{ __('admin.yes') }}</span>@else<span aria-hidden="true">@svg('mdi-close', 'size-6 text-red-600 dark:text-red-300')</span><span class="sr-only">{{ __('admin.no') }}</span>@endif</flux:table.cell>
+                            <flux:table.cell>
+                                @if(app()->getLocale() == "de")
+                                    {{ json_decode($election->name)[0] }}
+                                @elseif(app()->getLocale() == "en")
+                                    {{ json_decode($election->name)[1] }}
+                                @endif
+                            </flux:table.cell>
+                            <flux:table.cell>
+                                @if($election->candidates_exist)
+                                    <flux:icon.check class="size-6 text-green-600 dark:text-green-500" aria-hidden="true" />
+                                    <span class="sr-only">{{ __('admin.yes') }}</span>
+                                @else
+                                    <flux:icon.x class="size-6 text-red-600 dark:text-red-300" aria-hidden="true" />
+                                    <span class="sr-only">{{ __('admin.no') }}</span>
+                                @endif
+                            </flux:table.cell>
+                            <flux:table.cell>
+                                @if($election->all_votes_counted)
+                                    <flux:icon.check class="size-6 text-green-600 dark:text-green-500" aria-hidden="true" />
+                                    <span class="sr-only">{{ __('admin.yes') }}</span>
+                                @else
+                                    <flux:icon.x class="size-6 text-red-600 dark:text-red-300" aria-hidden="true" />
+                                    <span class="sr-only">{{ __('admin.no') }}</span>
+                                @endif
+                            </flux:table.cell>
+                            <flux:table.cell>
+                                @if($election->public)
+                                    <flux:icon.check class="size-6 text-green-600 dark:text-green-500" aria-hidden="true" />
+                                    <span class="sr-only">{{ __('admin.yes') }}</span>
+                                @else
+                                    <flux:icon.x class="size-6 text-red-600 dark:text-red-300" aria-hidden="true" />
+                                    <span class="sr-only">{{ __('admin.no') }}</span>
+                                @endif
+                            </flux:table.cell>
                             <flux:table.cell class="whitespace-nowrap text-right">
                                 <flux:dropdown>
                                     <flux:button size="sm" icon="ellipsis-vertical" />
