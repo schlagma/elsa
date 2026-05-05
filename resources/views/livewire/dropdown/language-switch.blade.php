@@ -1,5 +1,7 @@
 <flux:dropdown>
-    <flux:button variant="ghost" icon="languages" />
+    <flux:button icon:trailing="chevron-down">
+        <x-icon name="flag-language-{{ app()->getLocale() }}" class="size-4" />
+    </flux:button>
     <flux:menu>
         @foreach(config('app.locales') as $key => $locale)
             <flux:menu.item
@@ -9,7 +11,7 @@
                 :current="app()->getLocale() === $key"
             >
                 <span aria-hidden="true" class="mr-3">
-                    <x-icon name="flag-language-{{ $key }}" class="size-6" />
+                    <x-icon name="flag-language-{{ $key }}" class="size-4" />
                 </span>
                 {{ $locale['name'] }}
             </flux:menu.item>
