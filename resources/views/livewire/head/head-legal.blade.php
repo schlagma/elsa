@@ -12,7 +12,7 @@
         </flux:sidebar.header>
     </div>
         
-    <div class="flex items-center gap-x-4 ml-auto">
+    <div class="flex items-center gap-x-2 ml-auto">
         <livewire:dropdown.language-switch />
 
         <flux:dropdown>

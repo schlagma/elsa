@@ -2,7 +2,7 @@
     <flux:sidebar.toggle class="lg:hidden" icon="menu" />
     <div class="hidden md:inline">
     </div>
-    <div class="flex items-center gap-x-4 ml-auto">
+    <div class="flex items-center gap-x-2 ml-auto">
         <livewire:dropdown.election-switch />
         <livewire:dropdown.language-switch />
 
