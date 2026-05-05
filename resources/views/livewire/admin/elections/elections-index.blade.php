@@ -15,52 +15,48 @@
         </div>
     </div>
     <div class="mt-6">
-        <div class="-mx-6 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                @if (count($elections) > 0)
-                    <flux:table>
-                        <flux:table.columns>
-                                <flux:table.column class="min-w-36">{{ __('admin.name') }}</flux:table.column>
-                                <flux:table.column class="min-w-52">{{ __('admin.candidatesExist') }}</flux:table.column>
-                                <flux:table.column class="min-w-52">{{ __('admin.allVotesCounted') }}</flux:table.column>
-                                <flux:table.column class="min-w-32">{{ __('admin.electionIsPublic') }}</flux:table.column>
-                                <flux:table.column><span class="sr-only">{{ __('admin.options') }}</span></flux:table.column>
-                        </flux:table.columns>
-                        <flux:table.rows>
-                            @foreach($elections as $election)
-                                <flux:table.row>
-                                    <flux:table.cell>@if(app()->getLocale() == "de"){{ json_decode($election->name)[0] }}@elseif(app()->getLocale() == "en"){{ json_decode($election->name)[1] }}@endif</flux:table.cell>
-                                    <flux:table.cell>@if($election->candidates_exist)<span aria-hidden="true">@svg('mdi-check', 'size-6 text-green-600 dark:text-green-500')</span><span class="sr-only">{{ __('admin.yes') }}</span>@else<span aria-hidden="true">@svg('mdi-close', 'size-6 text-red-600 dark:text-red-300')</span><span class="sr-only">{{ __('admin.no') }}</span>@endif</flux:table.cell>
-                                    <flux:table.cell>@if($election->all_votes_counted)<span aria-hidden="true">@svg('mdi-check', 'size-6 text-green-600 dark:text-green-500')</span><span class="sr-only">{{ __('admin.yes') }}</span>@else<span aria-hidden="true">@svg('mdi-close', 'size-6 text-red-600 dark:text-red-300')</span><span class="sr-only">{{ __('admin.no') }}</span>@endif</flux:table.cell>
-                                    <flux:table.cell>@if($election->public)<span aria-hidden="true">@svg('mdi-check', 'size-6 text-green-600 dark:text-green-500')</span><span class="sr-only">{{ __('admin.yes') }}</span>@else<span aria-hidden="true">@svg('mdi-close', 'size-6 text-red-600 dark:text-red-300')</span><span class="sr-only">{{ __('admin.no') }}</span>@endif</flux:table.cell>
-                                    <flux:table.cell class="whitespace-nowrap text-right">
-                                        <flux:dropdown>
-                                            <flux:button size="sm" icon="ellipsis-vertical" />
-                                            <flux:menu>
-                                                <flux:menu.item
-                                                    wire:navigate
-                                                    href="{{ route('admin-elections-edit', ['id' => $election->id]) }}"
-                                                    icon="pencil"
-                                                >
-                                                    {{ __('common.edit') }}
-                                                </flux:menu.item>
-                                            </flux:menu>
-                                        </flux:dropdown>
-                                    </flux:table.cell>
-                                </flux:table.row>
-                            @endforeach
-                        </flux:table.rows>
-                    </flux:table>
+        @if (count($elections) > 0)
+            <flux:table>
+                <flux:table.columns>
+                        <flux:table.column class="min-w-36">{{ __('admin.name') }}</flux:table.column>
+                        <flux:table.column class="min-w-52">{{ __('admin.candidatesExist') }}</flux:table.column>
+                        <flux:table.column class="min-w-52">{{ __('admin.allVotesCounted') }}</flux:table.column>
+                        <flux:table.column class="min-w-32">{{ __('admin.electionIsPublic') }}</flux:table.column>
+                        <flux:table.column><span class="sr-only">{{ __('admin.options') }}</span></flux:table.column>
+                </flux:table.columns>
+                <flux:table.rows>
+                    @foreach($elections as $election)
+                        <flux:table.row>
+                            <flux:table.cell>@if(app()->getLocale() == "de"){{ json_decode($election->name)[0] }}@elseif(app()->getLocale() == "en"){{ json_decode($election->name)[1] }}@endif</flux:table.cell>
+                            <flux:table.cell>@if($election->candidates_exist)<span aria-hidden="true">@svg('mdi-check', 'size-6 text-green-600 dark:text-green-500')</span><span class="sr-only">{{ __('admin.yes') }}</span>@else<span aria-hidden="true">@svg('mdi-close', 'size-6 text-red-600 dark:text-red-300')</span><span class="sr-only">{{ __('admin.no') }}</span>@endif</flux:table.cell>
+                            <flux:table.cell>@if($election->all_votes_counted)<span aria-hidden="true">@svg('mdi-check', 'size-6 text-green-600 dark:text-green-500')</span><span class="sr-only">{{ __('admin.yes') }}</span>@else<span aria-hidden="true">@svg('mdi-close', 'size-6 text-red-600 dark:text-red-300')</span><span class="sr-only">{{ __('admin.no') }}</span>@endif</flux:table.cell>
+                            <flux:table.cell>@if($election->public)<span aria-hidden="true">@svg('mdi-check', 'size-6 text-green-600 dark:text-green-500')</span><span class="sr-only">{{ __('admin.yes') }}</span>@else<span aria-hidden="true">@svg('mdi-close', 'size-6 text-red-600 dark:text-red-300')</span><span class="sr-only">{{ __('admin.no') }}</span>@endif</flux:table.cell>
+                            <flux:table.cell class="whitespace-nowrap text-right">
+                                <flux:dropdown>
+                                    <flux:button size="sm" icon="ellipsis-vertical" />
+                                    <flux:menu>
+                                        <flux:menu.item
+                                            wire:navigate
+                                            href="{{ route('admin-elections-edit', ['id' => $election->id]) }}"
+                                            icon="pencil"
+                                        >
+                                            {{ __('common.edit') }}
+                                        </flux:menu.item>
+                                    </flux:menu>
+                                </flux:dropdown>
+                            </flux:table.cell>
+                        </flux:table.row>
+                    @endforeach
+                </flux:table.rows>
+            </flux:table>
 
-                    <div class="pagination">
-                        <flux:pagination :paginator="$elections" />
-                    </div>
-                @else
-                    <div>
-                        <p class="text-zinc-800 dark:text-white">{{ __('admin.noResults') }}</p>
-                    </div>
-                @endif
+            <div class="pagination">
+                <flux:pagination :paginator="$elections" />
             </div>
-        </div>
+        @else
+            <div>
+                <p class="text-zinc-800 dark:text-white">{{ __('admin.noResults') }}</p>
+            </div>
+        @endif
     </div>
 </div>
