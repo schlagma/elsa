@@ -104,10 +104,36 @@
                                 <flux:table.row>
                                     <flux:table.cell>{{ $candidate->lastname }}</flux:table.cell>
                                     <flux:table.cell>{{ $candidate->firstname }}</flux:table.cell>
-                                    <flux:table.cell>@if(app()->getLocale() == "de"){{ json_decode($candidate->election)[0] }}@elseif(app()->getLocale() == "en"){{ json_decode($candidate->election)[1] }}@endif</flux:table.cell>
-                                    <flux:table.cell>@if(app()->getLocale() == "de"){{ json_decode($candidate->faculty)[0] }}@elseif(app()->getLocale() == "en"){{ json_decode($candidate->faculty)[1] }}@endif</flux:table.cell>
-                                    <flux:table.cell>@if(app()->getLocale() == "de"){{ json_decode($candidate->committee)[0] }}@elseif(app()->getLocale() == "en"){{ json_decode($candidate->committee)[1] }}@endif</flux:table.cell>
-                                    <flux:table.cell>@if($candidate->approved)<span aria-hidden="true">@svg('mdi-check', 'size-6 text-green-600 dark:text-green-500')</span><span class="sr-only">{{ __('admin.yes') }}</span>@else<span aria-hidden="true">@svg('mdi-close', 'size-6 text-red-600 dark:text-red-300')</span><span class="sr-only">{{ __('admin.no') }}</span>@endif</flux:table.cell>
+                                    <flux:table.cell>
+                                        @if(app()->getLocale() == "de")
+                                            {{ json_decode($candidate->election)[0] }}
+                                        @elseif(app()->getLocale() == "en")
+                                            {{ json_decode($candidate->election)[1] }}
+                                        @endif
+                                    </flux:table.cell>
+                                    <flux:table.cell>
+                                        @if(app()->getLocale() == "de")
+                                            {{ json_decode($candidate->faculty)[0] }}
+                                        @elseif(app()->getLocale() == "en")
+                                            {{ json_decode($candidate->faculty)[1] }}
+                                        @endif
+                                    </flux:table.cell>
+                                    <flux:table.cell>
+                                        @if(app()->getLocale() == "de")
+                                            {{ json_decode($candidate->committee)[0] }}
+                                        @elseif(app()->getLocale() == "en")
+                                            {{ json_decode($candidate->committee)[1] }}
+                                        @endif
+                                    </flux:table.cell>
+                                    <flux:table.cell>
+                                        @if($candidate->approved)
+                                            <flux:icon.check class="size-6 text-green-600 dark:text-green-500" aria-hidden="true" />
+                                            <span class="sr-only">{{ __('admin.yes') }}</span>
+                                        @else
+                                            <flux:icon.x class="size-6 text-red-600 dark:text-red-300" aria-hidden="true" />
+                                            <span class="sr-only">{{ __('admin.no') }}</span>
+                                        @endif
+                                    </flux:table.cell>
                                     <flux:table.cell class="whitespace-nowrap text-right">
                                         <flux:dropdown>
                                             <flux:button size="sm" icon="ellipsis-vertical" />
