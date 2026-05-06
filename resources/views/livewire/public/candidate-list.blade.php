@@ -2,7 +2,10 @@
     <div class="grid grid-cols-[1fr_auto] gap-x-4">
         <div class="space-y-2">
             <flux:breadcrumbs>
-                <flux:breadcrumbs.item>
+                <flux:breadcrumbs.item
+                    wire:navigate
+                    href="{{ route('public-infos', ['election' => $electionID]) }}"
+                >
                     @if(app()->getLocale() == "en")
                         {{ $electionName[1] }}
                     @else
