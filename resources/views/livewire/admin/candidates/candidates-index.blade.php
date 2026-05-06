@@ -16,16 +16,16 @@
     </div>
     <div class="mt-6 mb-8 grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-6">
         <flux:field>
-            <label for="filter-lastname">{{ __('admin.lastname') }}</label>
+            <flux:label for="filter-lastname">{{ __('admin.lastname') }}</flux:label>
             <flux:input type="text" wire:model.live="lastname" />
         </flux:field>
         <flux:field>
-            <label for="filter-firstname">{{ __('admin.firstname') }}</label>
+            <flux:label for="filter-firstname">{{ __('admin.firstname') }}</flux:label>
             <flux:input type="text" wire:model.live="firstname" />
         </flux:field>
         <div>
             <flux:field>
-                <label for="filter-election">{{ __('admin.election') }}</label>
+                <flux:label for="filter-election">{{ __('admin.election') }}</flux:label>
                 <flux:select
                     variant="listbox"
                     searchable
@@ -46,7 +46,7 @@
         </div>
         <div>
             <flux:field>
-                <label for="filter-faculty">{{ __('admin.faculty') }}</label>
+                <flux:label for="filter-faculty">{{ __('admin.faculty') }}</flux:label>
                 <flux:select
                     variant="listbox"
                     searchable
@@ -67,7 +67,7 @@
         </div>
         <div>
             <flux:field>
-                <label for="filter-committee">{{ __('admin.committee') }}</label>
+                <flux:label for="filter-committee">{{ __('admin.committee') }}</flux:label>
                 <flux:select
                     variant="listbox"
                     searchable
