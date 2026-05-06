@@ -179,7 +179,7 @@ button:disabled {
 }
 
 @utility candidate-box {
-  @apply grid grid-cols-[auto_1fr] lg:grid-cols-[auto_2fr_3fr] bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded-md shadow-2xs dark:shadow-md border border-zinc-300 dark:border-zinc-600 overflow-hidden mb-4 dark:text-white border-solid;
+  @apply grid grid-cols-[auto_1fr] lg:grid-cols-[auto_2fr_3fr] bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 rounded-md shadow-2xs dark:shadow-md border border-zinc-200 dark:border-zinc-600 overflow-hidden mb-4 dark:text-white border-solid;
   transition: 0.3s ease;
 
   & > div {
@@ -264,7 +264,7 @@ button:disabled {
 }
 
 @utility candidate-number {
-  @apply flex -ml-4 -mt-6 -mb-6 pt-3 h-full w-12 shrink-0 justify-center bg-zinc-300 dark:bg-zinc-600 font-bold text-zinc-800 dark:text-white;
+  @apply flex -ml-4 -mt-6 -mb-6 pt-3 h-full w-12 shrink-0 justify-center bg-zinc-200 dark:bg-zinc-600 font-bold text-zinc-800 dark:text-white;
 }
 
 @utility candidate-data-boxes {
@@ -295,7 +295,7 @@ button:disabled {
   }
 
   & > div p:last-of-type {
-    margin-bottom: 0;
+    @apply mb-0!;
   }
 }
 
