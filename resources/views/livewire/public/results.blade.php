@@ -153,7 +153,7 @@
                             <a wire:navigate class="candidate-box candidate-box-resigned" href="{{ route('public-candidate', ['id' => $candidate->id, 'election' => $electionID, 'committee' => $committeeID]) }}">
                                 <div class="py-0! pr-0!">
                                     <span class="candidate-number" aria-hidden="true">
-                                        @svg('mdi-close-circle-outline', 'size-6')
+                                        <flux:icon.circle-x class="size-6" />
                                     </span>
                                 </div>
                                 <div><strong>{{ trim($candidate->firstname) }} {{ trim($candidate->lastname) }}</strong></div>
