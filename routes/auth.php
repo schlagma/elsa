@@ -23,7 +23,7 @@ Route::get('/auth/callback', function() {
     # Get user information from Keycloak and update or create the user in the database
     $keycloakUser = Socialite::driver('keycloak')->stateless()->user();
     $user = User::updateOrCreate([
-        'username' => $keycloakUser->nickname,
+        'email' => $keycloakUser->email,
     ], [
         'username' => $keycloakUser->nickname,
         'name' => $keycloakUser->name,
