@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin\Lists;
 
+use App\Models\CommitteeList;
 use Flux\Flux;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
@@ -34,15 +35,13 @@ class ListsAdd extends Component
 
     public function save()
     {
-        $name = [];
-        array_push($name, $this->nameDE);
-        array_push($name, $this->nameEN);
-        
-        $infotext = [];
-        array_push($infotext, $this->infotextDE);
-        array_push($infotext, $this->infotextEN);
+        $name[] = $this->nameDE;
+        $name[] = $this->nameEN;
 
-        DB::table('lists')->create([
+        $infotext[] = $this->infotextDE;
+        $infotext[] = $this->infotextEN;
+
+        CommitteeList::create([
             'name' => json_encode($name),
             'description' => json_encode($infotext),
             'election' => $this->election,
