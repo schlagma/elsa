@@ -29,15 +29,12 @@
             @endif
         </div>
         <div class="pt-4">
-            <a
+            <flux:button
                 wire:navigate
                 href="{{ route('public-committee', ['id' => $committeeID, 'election' => $electionID]) }}"
                 title="{{ __('messages.info_on_this_committee')}}"
-                class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-white"
-            >
-                <span aria-hidden="true">@svg('mdi-information', 'size-6')</span>
-                <span class="sr-only">{{ __('messages.info_on_this_committee')}}</span>
-            </a>
+                icon="info"
+            />
         </div>
     </div>
     @if ($committee->lists)
