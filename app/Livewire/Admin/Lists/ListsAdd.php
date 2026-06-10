@@ -10,14 +10,14 @@ use Livewire\Component;
 #[Layout('layouts.app')]
 class ListsAdd extends Component
 {
-    public string $nameDE;
-    public string $nameEN;
+    public string $nameDE = '';
+    public string $nameEN = '';
 
-    public string $infotextDE;
-    public string $infotextEN;
+    public string $infotextDE = '';
+    public string $infotextEN = '';
 
-    public int $election;
-    public int $committee;
+    public ?int $election = null;
+    public ?int $committee = null;
     public int $seats = 0;
     public int $seatsDeputy = 0;
 
