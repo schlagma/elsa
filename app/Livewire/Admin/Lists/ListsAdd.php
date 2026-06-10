@@ -42,7 +42,7 @@ class ListsAdd extends Component
         array_push($infotext, $this->infotextDE);
         array_push($infotext, $this->infotextEN);
 
-        DB::table('lists')->where('id', $this->id)->update([
+        DB::table('lists')->updateOrCreate([
             'name' => json_encode($name),
             'description' => json_encode($infotext),
             'election' => $this->election,
