@@ -64,7 +64,7 @@
             @foreach ($candidates as $candidate)
                 @if ($candidate->list == $list->id)
                     <a wire:navigate class="candidate-box" href="{{ route('public-candidate', ['id' => $candidate->id, 'election' => $electionID, 'committee' => $committeeID]) }}">
-                        <div>
+                        <div class="py-0! pr-0!">
                             <span class="candidate-number">{{ $indexPeople + 1 }}</span>
                         </div>
                         <div><strong>{{ trim($candidate->firstname) }} {{ trim($candidate->lastname) }}</strong></div>
