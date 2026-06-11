@@ -40,7 +40,7 @@ class CandidateList extends Component
             ->select('id', 'name', 'seats', 'seats_deputy')
             ->where('committee', $committeeID)
             ->where('election', $electionID)
-            ->first();
+            ->get();
     
         $candidates = DB::table('candidates')
             ->join('courses', 'candidates.course', '=', 'courses.id')
