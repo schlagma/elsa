@@ -3,11 +3,11 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\Socialite\OidcProvider;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use SocialiteProviders\Manager\SocialiteWasCalled;
-use SocialiteProviders\OIDC\Provider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Event::listen(function (SocialiteWasCalled $event): void {
-            $event->extendSocialite('oidc', Provider::class);
+            $event->extendSocialite('oidc', OidcProvider::class);
         });
 
         Gate::define('admin', function (User $user) {
