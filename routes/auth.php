@@ -43,6 +43,7 @@ Route::get('/auth/callback', function () {
         'lastname' => $oidcUser->user['family_name'],
         'email' => $oidcUser->email,
         'groups' => json_encode($oidcUser->user['groups']) ?? json_encode([]),
+        'avatar' => $oidcUser->user['picture'] ?? null,
         'oidc_token' => $oidcUser->token,
         'oidc_refresh_token' => $oidcUser->refreshToken,
         'oidc_id_token' => $oidcUser->accessTokenResponseBody['id_token'],

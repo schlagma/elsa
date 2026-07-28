@@ -8,7 +8,7 @@
 
         <flux:dropdown>
             @auth
-                <flux:profile :chevron="false" avatar:name="{{ auth()->user()->name }}" />
+                <flux:profile :chevron="false" avatar:name="{{ auth()->user()->name }}" avatar:src="{{ auth()->user()->avatar }}" />
             @else
                 <flux:profile :chevron="false" avatar:name="?" />
             @endauth
