@@ -32,6 +32,24 @@ class CommitteesAdd extends Component
 
     public int $priority = 10;
 
+    protected function rules(): array
+    {
+        return [
+            'nameDE' => 'required|string|max:255',
+            'nameEN' => 'required|string|max:255',
+            'infotextDE' => 'nullable|string',
+            'infotextEN' => 'nullable|string',
+            'seats' => 'integer|min:0',
+            'seatsDeputy' => 'integer|min:0',
+            'committeeElections' => 'array',
+            'committeeElections.*' => 'exists:elections,id',
+            'lists' => 'boolean',
+            'listsQuoted' => 'boolean',
+            'active' => 'boolean',
+            'priority' => 'integer|min:0',
+        ];
+    }
+
     public function render()
     {
         $elections = DB::table('elections')->orderByDesc('id')->get();
@@ -43,6 +61,8 @@ class CommitteesAdd extends Component
 
     public function save()
     {
+        $this->validate();
+
         $name = [];
         array_push($name, $this->nameDE);
         array_push($name, $this->nameEN);

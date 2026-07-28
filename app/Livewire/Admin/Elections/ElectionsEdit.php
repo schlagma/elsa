@@ -60,8 +60,27 @@ class ElectionsEdit extends Component
         return view('livewire.admin.elections.elections-edit');
     }
 
+    protected function rules(): array
+    {
+        return [
+            'nameDE' => 'required|string|max:255',
+            'nameEN' => 'required|string|max:255',
+            'infotextDE' => 'nullable|string|max:10000',
+            'infotextEN' => 'nullable|string|max:10000',
+            'public' => 'boolean',
+            'candidatesExist' => 'boolean',
+            'allVotesCounted' => 'boolean',
+            'candidacyBegin' => 'nullable|date',
+            'candidacyEnd' => 'nullable|date|after_or_equal:candidacyBegin',
+            'candidacyEditBegin' => 'nullable|date',
+            'candidacyEditEnd' => 'nullable|date|after_or_equal:candidacyEditBegin',
+        ];
+    }
+
     public function save()
     {
+        $this->validate();
+
         $name = [];
         array_push($name, $this->nameDE);
         array_push($name, $this->nameEN);

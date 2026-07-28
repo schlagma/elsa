@@ -27,8 +27,21 @@ class FacultiesAdd extends Component
         ]);
     }
 
+    protected function rules(): array
+    {
+        return [
+            'nameDE' => 'required|string|max:255',
+            'nameEN' => 'required|string|max:255',
+            'facultyElections' => 'array',
+            'facultyElections.*' => 'exists:elections,id',
+            'active' => 'boolean',
+        ];
+    }
+
     public function save()
     {
+        $this->validate();
+
         $name = [];
         array_push($name, $this->nameDE);
         array_push($name, $this->nameEN);

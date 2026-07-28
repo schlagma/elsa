@@ -11,18 +11,18 @@ return Application::configure(basePath: dirname(__DIR__))
         web: __DIR__.'/../routes/web.php',
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
-        using: function () {
+        using: function (): void {
             Route::middleware('web')->group(base_path('routes/web.php'));
             Route::middleware('web')->group(base_path('routes/auth.php'));
         },
     )
-    ->withMiddleware(function (Middleware $middleware) {
+    ->withMiddleware(function (Middleware $middleware): void {
         $middleware
             ->appendToGroup('web', LanguageMiddleware::class)
             ->validateCsrfTokens(except: [
-                'auth/saml2/callback',
+                'auth/backchannel-logout',
             ]);
     })
-    ->withExceptions(function (Exceptions $exceptions) {
+    ->withExceptions(function (Exceptions $exceptions): void {
         //
     })->create();

@@ -1,7 +1,7 @@
 <div class="infotext p-6 sm:p-8 dark:text-white">
     @if(app()->getLocale() == "en")
-        {!! Illuminate\Support\Str::markdown($infotext[1]) !!}
+        {!! clean(Illuminate\Support\Str::markdown($infotext[1]), 'markdown') !!}
     @else
-        {!! Illuminate\Support\Str::markdown($infotext[0]) !!}
+        {!! clean(Illuminate\Support\Str::markdown($infotext[0]), 'markdown') !!}
     @endif
 </div>

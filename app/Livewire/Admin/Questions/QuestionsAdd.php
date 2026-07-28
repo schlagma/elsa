@@ -41,8 +41,22 @@ class QuestionsAdd extends Component
         array_splice($this->questionsEN, $index, 1);
     }
 
+    protected function rules(): array
+    {
+        return [
+            'election' => 'required|integer|exists:elections,id',
+            'committee' => 'required|integer|exists:committees,id',
+            'questionsDE' => 'array',
+            'questionsDE.*' => 'nullable|string|max:1000',
+            'questionsEN' => 'array',
+            'questionsEN.*' => 'nullable|string|max:1000',
+        ];
+    }
+
     public function save()
     {
+        $this->validate();
+
         $questions = [];
         array_push($questions, $this->questionsDE);
         array_push($questions, $this->questionsEN);

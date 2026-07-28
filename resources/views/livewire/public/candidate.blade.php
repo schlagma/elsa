@@ -87,7 +87,7 @@
                         @if ($answers != [] && $answers[1][$i] != null && $answers[1][$i] != "")
                             <div class="question-answer-box">
                                 <div>{{ $questions[1][$i] }}</div>
-                                <div>{!! Illuminate\Support\Str::markdown($answers[1][$i]) !!}</div>
+                                <div>{!! clean(Illuminate\Support\Str::markdown($answers[1][$i]), 'markdown') !!}</div>
                             </div>
                             @php
                                 $textExists = true;
@@ -99,7 +99,7 @@
                         @if ($answers != [] && $answers[0][$i] != null && $answers[0][$i] != "")
                             <div class="question-answer-box">
                                 <div>{{ $questions[0][$i] }}</div>
-                                <div>{!! Illuminate\Support\Str::markdown($answers[0][$i]) !!}</div>
+                                <div>{!! clean(Illuminate\Support\Str::markdown($answers[0][$i]), 'markdown') !!}</div>
                             </div>
                             @php
                                 $textExists = true;

@@ -63,6 +63,7 @@ return [
     'lists' => 'Lists',
     'listsAddTitle' => 'Add list',
     'listsEditTitle' => 'Edit list',
+    'invalidImage' => 'Invalid or too large image.',
     'name' => 'Name',
     'nameDE' => 'Name (DE)',
     'nameEN' => 'Name (EN)',

@@ -27,11 +27,24 @@ class CoursesAdd extends Component
         ]);
     }
 
+    protected function rules(): array
+    {
+        return [
+            'nameDE' => 'required|string|max:255',
+            'nameEN' => 'required|string|max:255',
+            'courseElections' => 'array',
+            'courseElections.*' => 'exists:elections,id',
+            'active' => 'boolean',
+        ];
+    }
+
     public function save()
     {
+        $this->validate();
+
         $name = [];
-        array_push($name, $nameDE);
-        array_push($name, $nameEN);
+        array_push($name, $this->nameDE);
+        array_push($name, $this->nameEN);
 
         DB::table('courses')->updateOrInsert([
             'name' => json_encode($name),

@@ -25,6 +25,17 @@ class ResultsEdit extends Component
 
     public int $ballotsInvalid;
 
+    protected function rules(): array
+    {
+        return [
+            'election' => 'required|integer|exists:elections,id',
+            'committee' => 'required|integer|exists:committees,id',
+            'eligibleVoters' => 'required|integer|min:0',
+            'ballotsCast' => 'required|integer|min:0|lte:eligibleVoters',
+            'ballotsInvalid' => 'required|integer|min:0|lte:ballotsCast',
+        ];
+    }
+
     public function mount(Request $request)
     {
         $this->id = $request->id;
@@ -50,6 +61,8 @@ class ResultsEdit extends Component
 
     public function save()
     {
+        $this->validate();
+
         DB::table('results')->where('id', $this->id)->update([
             'election' => $this->election,
             'committee' => $this->committee,

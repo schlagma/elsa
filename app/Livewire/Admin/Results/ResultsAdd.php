@@ -20,6 +20,17 @@ class ResultsAdd extends Component
 
     public int $ballotsInvalid;
 
+    protected function rules(): array
+    {
+        return [
+            'election' => 'required|integer|exists:elections,id',
+            'committee' => 'required|integer|exists:committees,id',
+            'eligibleVoters' => 'required|integer|min:0',
+            'ballotsCast' => 'required|integer|min:0|lte:eligibleVoters',
+            'ballotsInvalid' => 'required|integer|min:0|lte:ballotsCast',
+        ];
+    }
+
     public function render()
     {
         $elections = DB::table('elections')->orderByDesc('id')->get();
@@ -33,6 +44,8 @@ class ResultsAdd extends Component
 
     public function save()
     {
+        $this->validate();
+
         DB::table('results')->updateOrInsert([
             'election' => $this->election,
             'committee' => $this->committee,

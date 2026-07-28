@@ -141,8 +141,4 @@ return [
     'group_election_commission' => env('GROUP_ELECTION_COMMISSION', 'wahlen'),
     'group_admin' => env('GROUP_ADMIN', 'admin'),
 
-    // Uni LDAP
-    'uni_ldap_host' => env('UNI_LDAP_HOST', ''),
-    'uni_ldap_base' => env('UNI_LDAP_BASE', ''),
-
 ];

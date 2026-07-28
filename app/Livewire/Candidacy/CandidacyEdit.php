@@ -99,6 +99,16 @@ class CandidacyEdit extends Component
         }
     }
 
+    protected function rules(): array
+    {
+        return [
+            'answersDE' => 'array',
+            'answersDE.*' => 'nullable|string|max:5000',
+            'answersEN' => 'array',
+            'answersEN.*' => 'nullable|string|max:5000',
+        ];
+    }
+
     public function render()
     {
         $faculties = DB::table('faculties')->get();
@@ -129,6 +139,8 @@ class CandidacyEdit extends Component
 
     public function save()
     {
+        $this->validate();
+
         $answers = [];
         array_push($answers, $this->answersDE);
         array_push($answers, $this->answersEN);
@@ -142,10 +154,24 @@ class CandidacyEdit extends Component
 
     public function saveImage()
     {
-        $imgID = Str::uuid();
         $imgB64 = str_replace('data:image/jpeg;base64,', '', $this->imageCropped);
-        $imgDecoded = base64_decode($imgB64);
-        $img = imagecreatefromstring($imgDecoded);
+
+        if (strlen($imgB64) > 10 * 1024 * 1024) {
+            Flux::toast(variant: 'danger', text: __('admin.invalidImage'));
+
+            return;
+        }
+
+        $imgDecoded = base64_decode($imgB64, true);
+        $img = $imgDecoded ? @imagecreatefromstring($imgDecoded) : false;
+
+        if (! $img) {
+            Flux::toast(variant: 'danger', text: __('admin.invalidImage'));
+
+            return;
+        }
+
+        $imgID = Str::uuid();
         $imgSize = 600;
         $imgFileName = $imgID.'.avif';
         $width = imagesx($img);
@@ -169,10 +195,15 @@ class CandidacyEdit extends Component
 
     public function removeImage()
     {
+        $picture = DB::table('candidates')->where('id', $this->id)->value('picture');
+
         DB::table('candidates')->where('id', $this->id)->update([
             'picture' => null,
         ]);
-        Storage::disk('local')->delete('candidates/'.$this->picture.'.avif');
+
+        if ($picture) {
+            Storage::disk('local')->delete('candidates/'.$picture.'.avif');
+        }
 
         $this->pictureUrl = null;
 

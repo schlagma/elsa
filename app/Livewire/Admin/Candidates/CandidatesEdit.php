@@ -90,6 +90,28 @@ class CandidatesEdit extends Component
         }
     }
 
+    protected function rules(): array
+    {
+        return [
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'faculty' => 'required|integer|exists:faculties,id',
+            'course' => 'required|integer|exists:courses,id',
+            'election' => 'required|integer|exists:elections,id',
+            'committee' => 'required|integer|exists:committees,id',
+            'list' => 'nullable|integer|exists:lists,id',
+            'answersDE' => 'array',
+            'answersDE.*' => 'nullable|string',
+            'answersEN' => 'array',
+            'answersEN.*' => 'nullable|string',
+            'votes' => 'nullable|integer|min:0',
+            'resigned' => 'boolean',
+            'candidacyReceived' => 'nullable|date',
+            'approved' => 'boolean',
+        ];
+    }
+
     public function render()
     {
         $faculties = DB::table('faculties')->get();
@@ -120,13 +142,15 @@ class CandidatesEdit extends Component
 
     public function save()
     {
-        $answers = [];
-        array_push($answers, $this->answersDE);
-        array_push($answers, $this->answersEN);
-
         if ($this->candidacyReceived == '') {
             $this->candidacyReceived = null;
         }
+
+        $this->validate();
+
+        $answers = [];
+        array_push($answers, $this->answersDE);
+        array_push($answers, $this->answersEN);
 
         DB::table('candidates')->where('id', $this->id)->update([
             'firstname' => $this->firstname,
@@ -149,10 +173,24 @@ class CandidatesEdit extends Component
 
     public function saveImage()
     {
-        $imgID = Str::uuid();
         $imgB64 = str_replace('data:image/jpeg;base64,', '', $this->imageCropped);
-        $imgDecoded = base64_decode($imgB64);
-        $img = imagecreatefromstring($imgDecoded);
+
+        if (strlen($imgB64) > 10 * 1024 * 1024) {
+            Flux::toast(variant: 'danger', text: __('admin.invalidImage'));
+
+            return;
+        }
+
+        $imgDecoded = base64_decode($imgB64, true);
+        $img = $imgDecoded ? @imagecreatefromstring($imgDecoded) : false;
+
+        if (! $img) {
+            Flux::toast(variant: 'danger', text: __('admin.invalidImage'));
+
+            return;
+        }
+
+        $imgID = Str::uuid();
         $imgSize = 600;
         $imgFileName = $imgID.'.avif';
         $width = imagesx($img);
@@ -176,10 +214,15 @@ class CandidatesEdit extends Component
 
     public function removeImage()
     {
+        $picture = DB::table('candidates')->where('id', $this->id)->value('picture');
+
         DB::table('candidates')->where('id', $this->id)->update([
             'picture' => null,
         ]);
-        Storage::disk('local')->delete('candidates/'.$this->picture.'.avif');
+
+        if ($picture) {
+            Storage::disk('local')->delete('candidates/'.$picture.'.avif');
+        }
 
         $this->pictureUrl = null;
 

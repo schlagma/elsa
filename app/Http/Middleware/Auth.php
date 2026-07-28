@@ -16,7 +16,7 @@ class Auth
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $user = Socialite::driver('keycloak')->user();
+        $user = Socialite::driver('oidc')->user();
 
         if ($user->getName()) {
             return $next($request);

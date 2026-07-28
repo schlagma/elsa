@@ -19,16 +19,16 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
+        'oidc_sub',
         'username',
         'name',
         'firstname',
         'lastname',
         'email',
         'groups',
-        'keycloak_id',
-        'keycloak_token',
-        'keycloak_refresh_token',
-        'keycloak_id_token',
+        'oidc_token',
+        'oidc_refresh_token',
+        'oidc_id_token',
     ];
 
     /**
@@ -38,6 +38,9 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'remember_token',
+        'oidc_token',
+        'oidc_refresh_token',
+        'oidc_id_token',
     ];
 
     /**

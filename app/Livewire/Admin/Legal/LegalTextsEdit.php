@@ -22,6 +22,18 @@ class LegalTextsEdit extends Component
 
     public string $accessibilityEN = '';
 
+    protected function rules(): array
+    {
+        return [
+            'imprintDE' => 'nullable|string|max:20000',
+            'imprintEN' => 'nullable|string|max:20000',
+            'privacyDE' => 'nullable|string|max:20000',
+            'privacyEN' => 'nullable|string|max:20000',
+            'accessibilityDE' => 'nullable|string|max:20000',
+            'accessibilityEN' => 'nullable|string|max:20000',
+        ];
+    }
+
     public function render()
     {
         $legalTexts = DB::table('legal_texts')->where('id', 1)->first();
@@ -37,6 +49,8 @@ class LegalTextsEdit extends Component
 
     public function save()
     {
+        $this->validate();
+
         $imprint = [];
         array_push($imprint, $this->imprintDE);
         array_push($imprint, $this->imprintEN);

@@ -63,7 +63,7 @@ Route::get('/privacy', Privacy::class)->name('privacy');
 Route::get('/accessibility', Accessibility::class)->name('accessibility');
 
 // Protected Routes
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth']], function (): void {
     Route::get('/{election}/candidacy', Candidacy::class)->name('candidacy');
 
     Route::get('/{election}/candidacy/my', CandidacyMy::class)->name('candidacy-my');

@@ -7,10 +7,10 @@
         <div>
             @if(app()->getLocale() == "en")
                 <h1 class="mb-6! dark:text-white">{{ json_decode($committee->name)[1] }}</h1>
-                {!! Illuminate\Support\Str::markdown(json_decode($committee->description)[1]) !!}
+                {!! clean(Illuminate\Support\Str::markdown(json_decode($committee->description)[1]), 'markdown') !!}
             @else
                 <h1 class="mb-6! dark:text-white">{{ json_decode($committee->name)[0] }}</h1>
-                {!! Illuminate\Support\Str::markdown(json_decode($committee->description)[0]) !!}
+                {!! clean(Illuminate\Support\Str::markdown(json_decode($committee->description)[0]), 'markdown') !!}
             @endif
         </div>
         @if($pictureUrl)

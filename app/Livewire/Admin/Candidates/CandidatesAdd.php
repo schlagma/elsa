@@ -5,6 +5,8 @@ namespace App\Livewire\Admin\Candidates;
 use Flux\Flux;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use LdapRecord\LdapRecordException;
+use LdapRecord\Models\Entry;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -28,6 +30,19 @@ class CandidatesAdd extends Component
                 'course' => null,
             ]]),
         ]);
+    }
+
+    protected function rules(): array
+    {
+        return [
+            'election' => 'required|integer|exists:elections,id',
+            'committee' => 'required|integer|exists:committees,id',
+            'list' => 'nullable|integer|exists:lists,id',
+            'candidates' => 'required|array|min:1',
+            'candidates.*.email' => 'required|email|max:255',
+            'candidates.*.faculty' => 'required|integer|exists:faculties,id',
+            'candidates.*.course' => 'required|integer|exists:courses,id',
+        ];
     }
 
     public function render()
@@ -67,37 +82,40 @@ class CandidatesAdd extends Component
 
     public function save()
     {
+        $this->validate();
+
         $candidates = $this->candidates->toArray();
         foreach ($candidates as $candidate) {
-            $ds = ldap_connect(config('app.uni_ldap_host'));
-            if ($ds) {
-                $filter = '(|(mail='.$candidate['email'].'))';
-                $result = ldap_search($ds, config('app.uni_ldap_base'), $filter);
-                $info = ldap_get_entries($ds, $result);
-
-                if ($info['count'] == 1) {
-                    DB::table('candidates')->updateOrInsert([
-                        'election' => $this->election,
-                        'committee' => $this->committee,
-                        'lastname' => $info[0]['sn'][0],
-                        'firstname' => $info[0]['givenname'][0],
-                        'email' => $candidate['email'],
-                        'picture' => null,
-                        'course' => $candidate['course'],
-                        'faculty' => $candidate['faculty'],
-                        'list' => $this->list,
-                        'answers' => null,
-                        'candidacy_received' => date('Y-m-d H:i:s'),
-                        'approved' => false,
-                        'votes' => null,
-                        'resigned' => false,
-                    ]);
-                } else {
-                    Log::error($email.' not found in LDAP.');
-                }
-            } else {
+            try {
+                $entry = Entry::where('mail', '=', $candidate['email'])->first();
+            } catch (LdapRecordException $e) {
                 Log::error('Connecting to LDAP failed.');
+
+                continue;
             }
+
+            if (! $entry) {
+                Log::error($candidate['email'].' not found in LDAP.');
+
+                continue;
+            }
+
+            DB::table('candidates')->updateOrInsert([
+                'election' => $this->election,
+                'committee' => $this->committee,
+                'lastname' => $entry->getFirstAttribute('sn'),
+                'firstname' => $entry->getFirstAttribute('givenname'),
+                'email' => $candidate['email'],
+                'picture' => null,
+                'course' => $candidate['course'],
+                'faculty' => $candidate['faculty'],
+                'list' => $this->list,
+                'answers' => null,
+                'candidacy_received' => date('Y-m-d H:i:s'),
+                'approved' => false,
+                'votes' => null,
+                'resigned' => false,
+            ]);
         }
 
         Flux::toast(variant: 'success', text: __('admin.added'));

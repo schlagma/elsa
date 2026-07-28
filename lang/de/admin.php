@@ -68,6 +68,7 @@ return [
     'lists' => 'Listen',
     'listsAddTitle' => 'Liste hinzufügen',
     'listsEditTitle' => 'Liste bearbeiten',
+    'invalidImage' => 'Ungültiges oder zu großes Bild.',
     'name' => 'Name',
     'nameDE' => 'Name (DE)',
     'nameEN' => 'Name (EN)',

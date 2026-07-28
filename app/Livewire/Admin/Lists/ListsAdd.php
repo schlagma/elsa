@@ -38,8 +38,24 @@ class ListsAdd extends Component
         ]);
     }
 
+    protected function rules(): array
+    {
+        return [
+            'election' => 'required|integer|exists:elections,id',
+            'committee' => 'required|integer|exists:committees,id',
+            'nameDE' => 'required|string|max:255',
+            'nameEN' => 'required|string|max:255',
+            'infotextDE' => 'nullable|string',
+            'infotextEN' => 'nullable|string',
+            'seats' => 'nullable|integer|min:0',
+            'seatsDeputy' => 'nullable|integer|min:0',
+        ];
+    }
+
     public function save()
     {
+        $this->validate();
+
         $name[] = $this->nameDE;
         $name[] = $this->nameEN;
 
