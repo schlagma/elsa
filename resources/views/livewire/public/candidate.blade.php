@@ -1,6 +1,6 @@
 <div class="p-6 sm:p-8 dark:text-white">
     <div class="space-y-2">
-        <flux:breadcrumbs>
+        <flux:breadcrumbs class="flex-wrap gap-y-1">
             <flux:breadcrumbs.item
                 wire:navigate
                 href="{{ route('public-infos', ['election' => $electionID]) }}"
