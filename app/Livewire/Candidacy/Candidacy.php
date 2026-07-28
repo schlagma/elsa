@@ -48,13 +48,13 @@ class Candidacy extends Component
         $this->firstname = auth()->user()->firstname;
         $this->lastname = auth()->user()->lastname;
         $this->email = auth()->user()->email;
-    
+
         $committees = DB::table('committees')
-            ->select('id','name')
+            ->select('id', 'name')
             ->whereJsonContains('elections', (int) $this->electionID)
             ->orderBy('id', 'asc')
             ->get();
-        
+
         $lists = DB::table('lists')
             ->where('election', $this->electionID)
             ->where('committee', $this->committee)
@@ -63,7 +63,7 @@ class Candidacy extends Component
         if (count($lists) == 0) {
             $this->list = null;
         }
-        
+
         $faculties = DB::table('faculties')->where('active', true)->orderBy('id')->get();
         $courses = DB::table('courses')->where('active', true)->orderBy('id')->get();
 
@@ -75,11 +75,11 @@ class Candidacy extends Component
 
         $election = DB::table('elections')->where('id', $this->electionID)->first();
 
-        $now = date("Y-m-d H:i:s");
-        if (!($now > $election->candidacy_begin && $now < $election->candidacy_end)) {
+        $now = date('Y-m-d H:i:s');
+        if (! ($now > $election->candidacy_begin && $now < $election->candidacy_end)) {
             abort('403');
         }
-    
+
         return view('livewire.candidacy.candidacy', [
             'election' => $election,
             'elections' => $elections,

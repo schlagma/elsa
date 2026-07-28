@@ -12,5 +12,5 @@ return [
     'logout' => 'Abmelden',
     'privacyPolicy' => 'Datenschutz',
     'save' => 'Speichern',
-    'selectAnOption' => 'Wähle eine Option …'
+    'selectAnOption' => 'Wähle eine Option …',
 ];

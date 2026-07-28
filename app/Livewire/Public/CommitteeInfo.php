@@ -15,23 +15,23 @@ class CommitteeInfo extends Component
     {
         $electionID = $request->election;
         $committeeID = $request->id;
-    
+
         $election = DB::table('elections')
             ->select('public')
             ->where('id', $electionID)
             ->first();
 
-        if (!$election->public) {
+        if (! $election->public) {
             abort('403');
         }
-    
+
         $committee = DB::table('committees')
             ->select('name', 'description', 'logo')
             ->where('id', $committeeID)
             ->first();
 
         if ($committee->logo) {
-            $pictureUrl = Storage::disk('local')->temporaryUrl('committee-logos/' . $committee->logo . '.svg', now()->addMinutes(5));
+            $pictureUrl = Storage::disk('local')->temporaryUrl('committee-logos/'.$committee->logo.'.svg', now()->addMinutes(5));
         } else {
             $pictureUrl = null;
         }

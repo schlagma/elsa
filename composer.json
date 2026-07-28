@@ -24,7 +24,9 @@
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.0",
         "phpunit/phpunit": "^11.0.1",
-        "spatie/laravel-ignition": "^2.4"
+        "spatie/laravel-ignition": "^2.4",
+        "driftingly/rector-laravel": "^2.5",
+        "rector/rector": "^2.5"
     },
     "autoload": {
         "psr-4": {
@@ -53,6 +55,10 @@
             "@php artisan key:generate --ansi",
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan migrate --graceful --ansi"
+        ],
+        "fix": [
+            "@php vendor/bin/rector process",
+            "@php vendor/bin/pint"
         ]
     },
     "extra": {

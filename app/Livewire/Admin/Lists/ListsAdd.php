@@ -12,14 +12,19 @@ use Livewire\Component;
 class ListsAdd extends Component
 {
     public string $nameDE = '';
+
     public string $nameEN = '';
 
     public string $infotextDE = '';
+
     public string $infotextEN = '';
 
     public ?int $election = null;
+
     public ?int $committee = null;
+
     public int $seats = 0;
+
     public int $seatsDeputy = 0;
 
     public function render()
@@ -49,7 +54,7 @@ class ListsAdd extends Component
             'seats' => $this->seats,
             'seats_deputy' => $this->seatsDeputy,
         ]);
-        
+
         Flux::toast(variant: 'success', text: __('admin.added'));
         $this->redirect('/admin/lists', navigate: true);
     }

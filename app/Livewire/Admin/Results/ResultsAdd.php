@@ -11,9 +11,13 @@ use Livewire\Component;
 class ResultsAdd extends Component
 {
     public int $election;
+
     public int $committee;
+
     public int $eligibleVoters;
+
     public int $ballotsCast;
+
     public int $ballotsInvalid;
 
     public function render()

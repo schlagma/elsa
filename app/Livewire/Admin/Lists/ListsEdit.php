@@ -16,14 +16,19 @@ class ListsEdit extends Component
     public int $id;
 
     public string $nameDE;
+
     public string $nameEN;
 
     public string $infotextDE;
+
     public string $infotextEN;
 
     public int $election;
+
     public int $committee;
+
     public int $seats;
+
     public int $seatsDeputy;
 
     public function mount(Request $request)
@@ -57,7 +62,7 @@ class ListsEdit extends Component
         $name = [];
         array_push($name, $this->nameDE);
         array_push($name, $this->nameEN);
-        
+
         $infotext = [];
         array_push($infotext, $this->infotextDE);
         array_push($infotext, $this->infotextEN);
@@ -70,7 +75,7 @@ class ListsEdit extends Component
             'seats' => $this->seats,
             'seats_deputy' => $this->seatsDeputy,
         ]);
-        
+
         Flux::toast(variant: 'success', text: __('admin.updated'));
     }
 }

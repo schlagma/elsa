@@ -4,9 +4,9 @@ namespace App\Livewire\Admin\Candidates;
 
 use Flux\Flux;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
@@ -18,22 +18,38 @@ class CandidatesEdit extends Component
     public int $id;
 
     public string $firstname;
+
     public string $lastname;
+
     public string $email;
+
     public int $faculty;
+
     public int $course;
+
     public int $election;
+
     public int $committee;
+
     public ?int $list = null;
+
     public array $answersDE = [];
+
     public array $answersEN = [];
+
     public ?int $votes = null;
+
     public bool $resigned;
+
     public $candidacyReceived;
+
     public bool $approved;
+
     public ?string $picture;
-    public string $pictureUrl = "";
-    public string $imageCropped = "";
+
+    public string $pictureUrl = '';
+
+    public string $imageCropped = '';
 
     public function mount(Request $request)
     {
@@ -60,17 +76,17 @@ class CandidatesEdit extends Component
             $this->answersEN = json_decode($candidate->answers)[1];
         } else {
             for ($i = 0; $i < count(json_decode($questions->questions)[0]); $i++) {
-                array_push($this->answersDE, "");
-                array_push($this->answersEN, "");
+                array_push($this->answersDE, '');
+                array_push($this->answersEN, '');
             }
         }
-        
+
         $this->votes = $candidate->votes;
         $this->resigned = $candidate->resigned;
         $this->candidacyReceived = $candidate->candidacy_received;
         $this->approved = $candidate->approved;
         if ($candidate->picture) {
-            $this->pictureUrl = Storage::disk('local')->temporaryUrl('candidates/' . $candidate->picture . '.avif', now()->addMinutes(5));
+            $this->pictureUrl = Storage::disk('local')->temporaryUrl('candidates/'.$candidate->picture.'.avif', now()->addMinutes(5));
         }
     }
 
@@ -108,7 +124,7 @@ class CandidatesEdit extends Component
         array_push($answers, $this->answersDE);
         array_push($answers, $this->answersEN);
 
-        if ($this->candidacyReceived == "") {
+        if ($this->candidacyReceived == '') {
             $this->candidacyReceived = null;
         }
 
@@ -138,22 +154,22 @@ class CandidatesEdit extends Component
         $imgDecoded = base64_decode($imgB64);
         $img = imagecreatefromstring($imgDecoded);
         $imgSize = 600;
-        $imgFileName = $imgID . '.avif';
+        $imgFileName = $imgID.'.avif';
         $width = imagesx($img);
         $height = imagesy($img);
         $thumb = imagecreatetruecolor($imgSize, ($imgSize / $width) * $height);
         imagecopyresized($thumb, $img, 0, 0, 0, 0, $imgSize, ($imgSize / $width) * $height, $width, $height);
 
         ob_start();
-        imageavif($thumb, NULL);
+        imageavif($thumb, null);
         $imgResult = ob_get_clean();
 
-        Storage::disk('local')->put('candidates/' . $imgFileName, $imgResult);
+        Storage::disk('local')->put('candidates/'.$imgFileName, $imgResult);
         DB::table('candidates')->where('id', $this->id)->update([
             'picture' => $imgID,
         ]);
 
-        $this->pictureUrl = Storage::disk('local')->temporaryUrl('candidates/' . $imgFileName, now()->addMinutes(5));
+        $this->pictureUrl = Storage::disk('local')->temporaryUrl('candidates/'.$imgFileName, now()->addMinutes(5));
 
         Flux::toast(variant: 'success', text: __('admin.pictureAdded'));
     }
@@ -163,7 +179,7 @@ class CandidatesEdit extends Component
         DB::table('candidates')->where('id', $this->id)->update([
             'picture' => null,
         ]);
-        Storage::disk('local')->delete('candidates/' . $this->picture . '.avif');
+        Storage::disk('local')->delete('candidates/'.$this->picture.'.avif');
 
         $this->pictureUrl = null;
 

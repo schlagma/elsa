@@ -12,6 +12,7 @@ class Accessibility extends Component
     public function render()
     {
         $legalTexts = DB::table('legal_texts')->select('accessibility')->where('id', 1)->first();
+
         return view('livewire.public.legal.accessibility', [
             'accessibility' => json_decode($legalTexts->accessibility),
         ]);

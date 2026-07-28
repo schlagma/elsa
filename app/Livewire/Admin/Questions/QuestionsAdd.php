@@ -6,15 +6,17 @@ use Flux\Flux;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 #[Layout('layouts.app')]
 class QuestionsAdd extends Component
 {
-    public $election = "";
-    public $committee = "";
-    public $questionsDE = [""];
-    public $questionsEN = [""];
+    public $election = '';
+
+    public $committee = '';
+
+    public $questionsDE = [''];
+
+    public $questionsEN = [''];
 
     public function render()
     {
@@ -29,8 +31,8 @@ class QuestionsAdd extends Component
 
     public function addQuestion()
     {
-        array_push($this->questionsDE, "");
-        array_push($this->questionsEN, "");
+        array_push($this->questionsDE, '');
+        array_push($this->questionsEN, '');
     }
 
     public function removeQuestion(int $index)

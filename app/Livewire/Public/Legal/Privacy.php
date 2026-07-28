@@ -12,6 +12,7 @@ class Privacy extends Component
     public function render()
     {
         $legalTexts = DB::table('legal_texts')->select('privacy')->where('id', 1)->first();
+
         return view('livewire.public.legal.privacy', [
             'privacy' => json_decode($legalTexts->privacy),
         ]);

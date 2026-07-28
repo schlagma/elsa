@@ -20,7 +20,7 @@ class CandidacyMy extends Component
 
     public function render()
     {
-        $now = date("Y-m-d H:i:s");
+        $now = date('Y-m-d H:i:s');
         $candidacies = DB::table('candidates')
             ->join('elections', 'candidates.election', '=', 'elections.id')
             ->join('committees', 'candidates.committee', '=', 'committees.id')

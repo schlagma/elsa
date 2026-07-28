@@ -12,9 +12,10 @@ class ResultsIndex extends Component
 {
     use WithPagination;
 
-    public $election = "";
-    public $committee = "";
-    
+    public $election = '';
+
+    public $committee = '';
+
     public function render()
     {
         $query = DB::table('results')
@@ -22,10 +23,10 @@ class ResultsIndex extends Component
             ->join('committees', 'results.committee', '=', 'committees.id')
             ->select('results.id', 'elections.name as election', 'committees.name as committee');
 
-        if ($this->election != "") {
+        if ($this->election != '') {
             $query->where('election', $this->election);
         }
-        if ($this->committee != "") {
+        if ($this->committee != '') {
             $query->where('committee', $this->committee);
         }
         $results = $query->paginate(10);

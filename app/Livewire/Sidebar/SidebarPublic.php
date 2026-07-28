@@ -22,16 +22,16 @@ class SidebarPublic extends Component
             )
             ->where('id', $request->election)
             ->first();
-        
+
         $committees = DB::table('committees')
-            ->select('id','name')
+            ->select('id', 'name')
             ->whereJsonContains('elections', (int) $request->election)
             ->orderBy('priority', 'asc')
             ->get();
 
         $showCandidacy = false;
         $showEditCandidacy = false;
-        $now = new DateTime();
+        $now = new DateTime;
         $candidacyStart = new DateTime($electionState->candidacy_begin);
         $candidacyEnd = new DateTime($electionState->candidacy_end);
         $candidacyEditStart = new DateTime($electionState->candidacy_edit_begin);

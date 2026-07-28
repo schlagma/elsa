@@ -16,87 +16,87 @@ class Candidate extends Component
         $electionID = $request->election;
         $candidateID = $request->id;
         $committeeID = $request->committee;
-    
+
         $election = DB::table('elections')
             ->select('name', 'public', 'candidates_exist', 'all_votes_counted')
             ->where('id', $electionID)
             ->first();
 
-        if (!$election->public) {
+        if (! $election->public) {
             abort('403');
         }
-    
+
         $candidate = DB::table('candidates')
             ->select('lastname', 'firstname', 'picture', 'course', 'faculty', 'list', 'election', 'committee', 'approved')
             ->where('id', $candidateID)
             ->first();
 
-        if (!$candidate->approved) {
+        if (! $candidate->approved) {
             abort('403');
         }
 
         if ($electionID != $candidate->election || $committeeID != $candidate->committee) {
             abort('404');
         }
-;
+
         if ($candidate->picture != '') {
-            $pictureUrl = Storage::disk('local')->temporaryUrl('candidates/' . $candidate->picture . '.avif', now()->addMinutes(5));
+            $pictureUrl = Storage::disk('local')->temporaryUrl('candidates/'.$candidate->picture.'.avif', now()->addMinutes(5));
         } else {
             $pictureUrl = null;
         }
-    
+
         $courseName = DB::table('courses')
             ->select('name')
             ->where('id', $candidate->course)
             ->first();
-    
+
         $facultyName = DB::table('faculties')
             ->select('name')
             ->where('id', $candidate->faculty)
             ->first();
-        
+
         $committee = DB::table('committees')
             ->select('name', 'lists')
             ->where('id', $committeeID)
             ->first();
-    
-        if($candidate->list) {
+
+        if ($candidate->list) {
             $listName = DB::table('lists')
                 ->select('name')
                 ->where('id', $candidate->list)
                 ->first();
         } else {
-            $listName = "";
+            $listName = '';
         }
-    
+
         $committeeLists = DB::table('committees')
             ->select('lists')
             ->where('id', $candidate->committee)
             ->first();
-    
+
         $questionsDB = DB::table('questions')
             ->select('questions')
             ->where('election', $electionID)
             ->where('committee', $candidate->committee)
             ->first();
-    
-        if($questionsDB->questions != null) {
+
+        if ($questionsDB->questions != null) {
             $questions = json_decode($questionsDB->questions, true);
         } else {
             $questions = [];
         }
-    
+
         $answersDB = DB::table('candidates')
             ->select('answers')
             ->where('id', $candidateID)
             ->first();
-    
-        if($answersDB->answers != null) {
+
+        if ($answersDB->answers != null) {
             $answers = json_decode($answersDB->answers, true);
         } else {
             $answers = [];
         }
-    
+
         return view('livewire.public.candidate', [
             'electionID' => $electionID,
             'electionName' => json_decode($election->name),

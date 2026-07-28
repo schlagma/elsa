@@ -14,11 +14,15 @@ class ResultsEdit extends Component
 {
     #[Locked]
     public int $id;
-    
+
     public int $election;
+
     public int $committee;
+
     public int $eligibleVoters;
+
     public int $ballotsCast;
+
     public int $ballotsInvalid;
 
     public function mount(Request $request)

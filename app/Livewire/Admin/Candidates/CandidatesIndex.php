@@ -13,9 +13,13 @@ class CandidatesIndex extends Component
     use WithPagination;
 
     public $lastname;
+
     public $firstname;
+
     public $election;
+
     public $faculty;
+
     public $committee;
 
     public function render()
@@ -33,23 +37,23 @@ class CandidatesIndex extends Component
                 'committees.name as committee',
                 'candidates.approved',
             );
-        
-        if ($this->lastname != "") {
-            $query->where('lastname', 'like', '%' . $this->lastname . '%');
+
+        if ($this->lastname != '') {
+            $query->where('lastname', 'like', '%'.$this->lastname.'%');
         }
-        if ($this->firstname != "") {
-            $query->where('firstname', 'like', '%' . $this->firstname . '%');
+        if ($this->firstname != '') {
+            $query->where('firstname', 'like', '%'.$this->firstname.'%');
         }
-        if ($this->election != "") {
+        if ($this->election != '') {
             $query->where('candidates.election', $this->election);
         }
-        if ($this->faculty != "") {
+        if ($this->faculty != '') {
             $query->where('candidates.faculty', $this->faculty);
         }
-        if ($this->committee != "") {
+        if ($this->committee != '') {
             $query->where('candidates.committee', $this->committee);
         }
-        
+
         $candidates = $query->orderBy('candidates.lastname')->paginate(10);
 
         $elections = DB::table('elections')->orderByDesc('id')->get();

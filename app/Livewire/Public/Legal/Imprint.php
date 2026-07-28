@@ -12,6 +12,7 @@ class Imprint extends Component
     public function render()
     {
         $legalTexts = DB::table('legal_texts')->select('imprint')->where('id', 1)->first();
+
         return view('livewire.public.legal.imprint', [
             'imprint' => json_decode($legalTexts->imprint),
         ]);

@@ -17,10 +17,10 @@ class ElectionInfo extends Component
             ->where('id', $request->election)
             ->first();
 
-        if (!$election->public) {
+        if (! $election->public) {
             abort('403');
         }
-        
+
         return view('livewire.public.election-info', [
             'infotext' => json_decode($election->infotext, true),
         ]);

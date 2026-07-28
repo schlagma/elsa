@@ -10,12 +10,17 @@ use Livewire\Component;
 #[Layout('layouts.app')]
 class LegalTextsEdit extends Component
 {
-    public string $imprintDE = "";
-    public string $imprintEN = "";
-    public string $privacyDE = "";
-    public string $privacyEN = "";
-    public string $accessibilityDE = "";
-    public string $accessibilityEN = "";
+    public string $imprintDE = '';
+
+    public string $imprintEN = '';
+
+    public string $privacyDE = '';
+
+    public string $privacyEN = '';
+
+    public string $accessibilityDE = '';
+
+    public string $accessibilityEN = '';
 
     public function render()
     {

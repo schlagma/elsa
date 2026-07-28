@@ -16,9 +16,11 @@ class FacultiesEdit extends Component
     public int $id;
 
     public string $nameDE;
+
     public string $nameEN;
 
     public array $facultyElections;
+
     public bool $active;
 
     public function mount(Request $request)
@@ -52,7 +54,7 @@ class FacultiesEdit extends Component
             'elections' => json_encode($this->facultyElections),
             'active' => $this->active,
         ]);
-        
+
         Flux::toast(variant: 'success', text: __('admin.updated'));
     }
 }

@@ -16,17 +16,25 @@ class CommitteesEdit extends Component
     public int $id;
 
     public string $nameDE;
+
     public string $nameEN;
 
     public string $infotextDE;
+
     public string $infotextEN;
 
     public int $seats;
+
     public int $seatsDeputy;
+
     public array $committeeElections;
+
     public bool $lists;
+
     public bool $listsQuoted;
+
     public bool $active;
+
     public int $priority;
 
     public function mount(Request $request)
@@ -61,7 +69,7 @@ class CommitteesEdit extends Component
         $name = [];
         array_push($name, $this->nameDE);
         array_push($name, $this->nameEN);
-        
+
         $infotext = [];
         array_push($infotext, $this->infotextDE);
         array_push($infotext, $this->infotextEN);
@@ -77,7 +85,7 @@ class CommitteesEdit extends Component
             'active' => $this->active,
             'priority' => $this->priority,
         ]);
-        
+
         Flux::toast(variant: 'success', text: __('admin.updated'));
     }
 }

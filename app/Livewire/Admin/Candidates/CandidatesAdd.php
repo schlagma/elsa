@@ -12,8 +12,11 @@ use Livewire\Component;
 class CandidatesAdd extends Component
 {
     public $election;
+
     public $committee;
+
     public $list;
+
     public $candidates;
 
     public function mount()
@@ -68,7 +71,7 @@ class CandidatesAdd extends Component
         foreach ($candidates as $candidate) {
             $ds = ldap_connect(config('app.uni_ldap_host'));
             if ($ds) {
-                $filter = "(|(mail=" . $candidate['email'] . "))";
+                $filter = '(|(mail='.$candidate['email'].'))';
                 $result = ldap_search($ds, config('app.uni_ldap_base'), $filter);
                 $info = ldap_get_entries($ds, $result);
 
@@ -90,10 +93,10 @@ class CandidatesAdd extends Component
                         'resigned' => false,
                     ]);
                 } else {
-                    Log::error($email . " not found in LDAP.");
+                    Log::error($email.' not found in LDAP.');
                 }
             } else {
-                Log::error("Connecting to LDAP failed.");
+                Log::error('Connecting to LDAP failed.');
             }
         }
 

@@ -16,18 +16,25 @@ class ElectionsEdit extends Component
     public int $id;
 
     public string $nameDE;
+
     public string $nameEN;
 
     public string $infotextDE;
+
     public string $infotextEN;
 
     public bool $public;
+
     public bool $candidatesExist;
+
     public bool $allVotesCounted;
 
     public $candidacyBegin;
+
     public $candidacyEnd;
+
     public $candidacyEditBegin;
+
     public $candidacyEditEnd;
 
     public function mount(Request $request)
@@ -58,7 +65,7 @@ class ElectionsEdit extends Component
         $name = [];
         array_push($name, $this->nameDE);
         array_push($name, $this->nameEN);
-        
+
         $infotext = [];
         array_push($infotext, $this->infotextDE);
         array_push($infotext, $this->infotextEN);

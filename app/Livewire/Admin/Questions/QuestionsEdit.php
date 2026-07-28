@@ -16,14 +16,17 @@ class QuestionsEdit extends Component
     public int $id;
 
     public int $election;
+
     public int $committee;
+
     public array $questionsDE;
+
     public array $questionsEN;
 
     public function mount(Request $request)
     {
         $this->id = $request->id;
-    
+
         $questions = DB::table('questions')
             ->select('questions')
             ->where('id', $this->id)
@@ -48,8 +51,8 @@ class QuestionsEdit extends Component
 
     public function addQuestion()
     {
-        array_push($this->questionsDE, "");
-        array_push($this->questionsEN, "");
+        array_push($this->questionsDE, '');
+        array_push($this->questionsEN, '');
     }
 
     public function removeQuestion(int $index)
@@ -69,7 +72,7 @@ class QuestionsEdit extends Component
             'election' => $this->election,
             'committee' => $this->committee,
         ]);
-        
+
         Flux::toast(variant: 'success', text: __('admin.updated'));
     }
 }

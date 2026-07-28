@@ -1,6 +1,7 @@
 <?php
+
 return [
-    'candidates' => "Candidates",
+    'candidates' => 'Candidates',
     'pageTitle' => 'Elections at TU Ilmenau',
     'results' => 'Results',
     'seats_voting_rights' => 'Seats with voting rights',

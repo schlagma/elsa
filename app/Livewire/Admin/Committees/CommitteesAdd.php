@@ -10,16 +10,26 @@ use Livewire\Component;
 #[Layout('layouts.app')]
 class CommitteesAdd extends Component
 {
-    public string $nameDE = "";
-    public string $nameEN = "";
-    public string $infotextDE = "";
-    public string $infotextEN = "";
+    public string $nameDE = '';
+
+    public string $nameEN = '';
+
+    public string $infotextDE = '';
+
+    public string $infotextEN = '';
+
     public int $seats = 0;
+
     public int $seatsDeputy = 0;
+
     public array $committeeElections = [];
+
     public bool $lists = false;
+
     public bool $listsQuoted = false;
+
     public bool $active = true;
+
     public int $priority = 10;
 
     public function render()

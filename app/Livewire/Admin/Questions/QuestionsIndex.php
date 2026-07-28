@@ -12,8 +12,9 @@ class QuestionsIndex extends Component
 {
     use WithPagination;
 
-    public $election = "";
-    public $committee = "";
+    public $election = '';
+
+    public $committee = '';
 
     public function render()
     {
@@ -22,10 +23,10 @@ class QuestionsIndex extends Component
             ->join('committees', 'questions.committee', '=', 'committees.id')
             ->select('questions.id', 'elections.name as election', 'committees.name as committee');
 
-        if ($this->election != "") {
+        if ($this->election != '') {
             $query->where('questions.election', $this->election);
         }
-        if ($this->committee != "") {
+        if ($this->committee != '') {
             $query->where('questions.committee', $this->committee);
         }
         $questions = $query->paginate(10);

@@ -10,9 +10,12 @@ use Livewire\Component;
 #[Layout('layouts.app')]
 class CoursesAdd extends Component
 {
-    public string $nameDE = "";
-    public string $nameEN = "";
+    public string $nameDE = '';
+
+    public string $nameEN = '';
+
     public array $courseElections = [];
+
     public bool $active = true;
 
     public function render()

@@ -12,5 +12,5 @@ return [
     'logout' => 'Logout',
     'privacyPolicy' => 'Privacy policy',
     'save' => 'Save',
-    'selectAnOption' => 'Select an option …'
+    'selectAnOption' => 'Select an option …',
 ];
